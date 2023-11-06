@@ -1,14 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.StoreOrdersViewController">
+    <top>
+        <Label text="Store Orders" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="32.0" />
+            </font>
+            <BorderPane.margin>
+                <Insets bottom="10.0" top="30.0" />
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <left>
+        <ListView fx:id="orderDetail" prefHeight="294.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" left="20.0" top="10.0" />
+            </BorderPane.margin>
+        </ListView>
+    </left>
+    <right>
+        <VBox alignment="CENTER" prefHeight="294.0" prefWidth="269.0" spacing="30.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" right="20.0" />
+            </BorderPane.margin>
+            <children>
+                <ComboBox fx:id="orderView" prefWidth="150.0" />
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Current Order Total: ">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="currentOrderTotalLabel" text="\$0.00">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="20.0">
+                    <children>
+                        <Button fx:id="removeItemButton" mnemonicParsing="false" onAction="#cancelOrderButtonClicked" text="Cancel Order" />
+                        <Button fx:id="exportOrdersButton" mnemonicParsing="false" onAction="#exportButtonClicked" text="Export Orders" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </right>
+</BorderPane>

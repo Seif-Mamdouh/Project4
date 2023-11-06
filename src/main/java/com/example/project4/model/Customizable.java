@@ -3,7 +3,7 @@ package com.example.project4.model;
 /**
  * Interface to enforce customizable behavior.
  *
- * @author Victor Ochoa, Kyle Boyce
+ * @author
  */
 public interface Customizable {
     /**

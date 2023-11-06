@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Class that acts as controller for main menu view.
  *
- * @author Victor Ochoa
+ * @author
  */
 public class MainMenuController {
 
@@ -62,7 +62,6 @@ public class MainMenuController {
      */
     @FXML
     private void currentOrderButtonClicked(ActionEvent actionEvent) throws IOException {
-        //TODO: Tweak so that not everytime a new instance is generated, keep list live updating if window open?
         currentOrderButton.setDisable(true);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("current-order-view.fxml"));
         Scene scene = new Scene(loader.load());

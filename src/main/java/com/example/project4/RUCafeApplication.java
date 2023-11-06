@@ -7,13 +7,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+/**
+ * Class used to run the RUCafe Application.
+ *
+ * @author
+ */
+public class RUCafeApplication extends Application {
+
+    /**
+     * Overriding start method from Application class.
+     */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(RUCafeApplication.class.getResource("main-menu.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 602, 443);
+
+        stage.setTitle("RUCafe - Main Menu");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
