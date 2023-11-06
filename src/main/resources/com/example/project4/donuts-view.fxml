@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.DonutsViewController">
+    <top>
+        <Label text="Order Donuts" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="32.0" />
+            </font>
+            <BorderPane.margin>
+                <Insets top="30.0" />
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <center>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <ComboBox fx:id="typeComboBox" prefHeight="40.0" prefWidth="184.0" promptText="Yeast Donut" visibleRowCount="3" GridPane.halignment="CENTER">
+                    <GridPane.margin>
+                        <Insets left="40.0" />
+                    </GridPane.margin>
+                </ComboBox>
+                <ImageView fx:id="donutView" fitHeight="109.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="2">
+                    <children>
+                        <Label text="Sub -Total">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="donutSubTotalLabel" text="\$0.00">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Button fx:id="addToOrderButton" alignment="CENTER" mnemonicParsing="false" onAction="#addToOrderButtonClicked" prefHeight="48.0" prefWidth="122.0" text="Add to Order" />
+                    </children>
+                </HBox>
+                <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="25.0" GridPane.rowIndex="1">
+                    <children>
+                        <Label fx:id="type1Name" text="Type 1">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="type2Name" text="Type 2">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="type3Name" text="Type 3">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <GridPane.margin>
+                        <Insets right="20.0" top="20.0" />
+                    </GridPane.margin>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                            <children>
+                                <Button fx:id="quantity1ButtonDown" disable="true" mnemonicParsing="false" onAction="#lessQuantity1ButtonClicked" text="-" />
+                                <Label fx:id="quantity1" text="0" />
+                                <Button fx:id="quantity1ButtonUp" mnemonicParsing="false" onAction="#addQuantity1ButtonClicked" text="+" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                            <children>
+                                <Button fx:id="quantity2ButtonDown" disable="true" mnemonicParsing="false" onAction="#lessQuantity2ButtonClicked" text="-" />
+                                <Label fx:id="quantity2" text="0" />
+                                <Button fx:id="quantity2ButtonUp" mnemonicParsing="false" onAction="#addQuantity2ButtonClicked" text="+" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                            <children>
+                                <Button fx:id="quantity3ButtonDown" disable="true" mnemonicParsing="false" onAction="#lessQuantity3ButtonClicked" text="-" />
+                                <Label fx:id="quantity3" text="0" />
+                                <Button fx:id="quantity3ButtonUp" mnemonicParsing="false" onAction="#addQuantity3ButtonClicked" text="+" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <GridPane.margin>
+                        <Insets top="20.0" />
+                    </GridPane.margin>
+                </VBox>
+            </children>
+        </GridPane>
+    </center>
+</BorderPane>
