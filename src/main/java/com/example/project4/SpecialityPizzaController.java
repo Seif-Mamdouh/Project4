@@ -29,7 +29,7 @@ public class SpecialityPizzaController {
         typeComboBox.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
         typeComboBox.getSelectionModel().selectFirst();
 
-        changePicture("src/main/resources/com/example/project4/seaFood.jpg");
+        changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
         typeComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldType, newType) -> {
             if(newType.equals("Deluxe"))
             {
@@ -46,7 +46,12 @@ public class SpecialityPizzaController {
             }
             else if(newType.equals("Meatzza"))
             {
-                changePicture("src/main/resources/com/example/project4/hole-donut.jpeg");
+                changePicture("src/main/resources/com/example/project4/images/meattza.jpeg");
+//                updateCost();
+            }
+            else if(newType.equals("Seafood"))
+            {
+                changePicture("src/main/resources/com/example/project4/images/seaFood.jpg");
 //                updateCost();
             }
         });
