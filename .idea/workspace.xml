@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1146ccde-975e-4ce2-adef-d7c48aaafcb0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/project4/images/pepperoni-pizza.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/project4/images/pizza.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/RUCafeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUCafeApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/SpecialityPizzaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/SpecialityPizzaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/export.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/project4/export.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -14,12 +14,7 @@ public class SpecialityPizzaController {
     private ComboBox<String> typeComboBox;
     @FXML
     private ImageView pizzaView;
-    @FXML
-    private Label type1Name;
-    @FXML
-    private Label type2Name;
-    @FXML
-    private Label type3Name;
+
 
 
 
@@ -29,11 +24,11 @@ public class SpecialityPizzaController {
         typeComboBox.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
         typeComboBox.getSelectionModel().selectFirst();
 
-        changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
+        changePicture("src/main/resources/com/example/project4/images/pizza.jpeg");
         typeComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldType, newType) -> {
             if(newType.equals("Deluxe"))
             {
-                changePicture("src/main/resources/com/example/project4/deluxe.jpeg");
+                changePicture("src/main/resources/com/example/project4/images/deluxe.jpeg");
 //                updateCost();
             }
             else if(newType.equals("Supreme"))
@@ -41,7 +36,7 @@ public class SpecialityPizzaController {
 //                type1Name.setText("STRAWBERRY");
 //                type2Name.setText("COFFEE");
 //                type3Name.setText("APPLE");
-                changePicture("src/main/resources/com/example/project4/supreme.jpg");
+                changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
 //                updateCost();
             }
             else if(newType.equals("Meatzza"))
@@ -52,6 +47,11 @@ public class SpecialityPizzaController {
             else if(newType.equals("Seafood"))
             {
                 changePicture("src/main/resources/com/example/project4/images/seaFood.jpg");
+//                updateCost();
+            }
+            else if(newType.equals("Pepperoni"))
+            {
+                changePicture("src/main/resources/com/example/project4/images/pepperoni-pizza.jpeg");
 //                updateCost();
             }
         });
