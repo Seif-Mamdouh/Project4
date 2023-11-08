@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.SpecialityPizzaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.SpecialityPizzaController">
     <top>
         <Label text="Our Speciality Pizza" BorderPane.alignment="CENTER">
             <font>
@@ -17,7 +17,6 @@
             </BorderPane.margin>
         </Label>
     </top>
-
     <center>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -36,6 +35,32 @@
                     </GridPane.margin>
                 </ComboBox>
                 <ImageView fx:id="pizzaView" fitHeight="109.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="2">
+                    <children>
+                        <Label text="Sub -Total">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label text="\$0.00">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" text="Add to Order" />
+                    </children>
+                </HBox>
+                <VBox alignment="CENTER" prefHeight="109.0" prefWidth="215.0" spacing="5.0" GridPane.rowIndex="1">
+                <children>
+                    <ListView fx:id="ingredientsListView" prefHeight="125.0" prefWidth="169.0">
+                            <Font size="8.0" />
+                    </ListView>
+                </children>
+                </VBox>
             </children>
         </GridPane>
     </center>
