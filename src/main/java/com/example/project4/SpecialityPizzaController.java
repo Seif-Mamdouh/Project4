@@ -22,42 +22,6 @@ public class SpecialityPizzaController {
     private ListView<String> ingredientsListView;
     @FXML
     private ObservableList<String> ingredients;
-//    @FXML
-//    private Label ingredient1;
-//    @FXML
-//    private Label ingredient2;
-//    @FXML
-//    private Label ingredient3;
-//    @FXML
-//    private Label ingredient4;
-//    @FXML
-//    private Label ingredient5;
-//    @FXML
-//    private Label ingredient6;
-
-//    public void initialize() {
-//
-//        ingredients = FXCollections.observableArrayList();
-//
-//        typeComboBox.getItems().removeAll(typeComboBox.getItems());
-//        typeComboBox.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
-//        typeComboBox.getSelectionModel().selectFirst();
-//
-//        changePicture("src/main/resources/com/example/project4/images/pizza.jpeg");
-//
-//        // Bind the ListView to the ingredients list
-//        ingredientsListView.setItems(ingredients);
-//
-//        typeComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldType, newType) -> {
-//            if (newType.equals("Deluxe")) {
-//                changePicture("src/main/resources/com/example/project4/images/deluxe.jpeg");
-//                ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
-//            } else if (newType.equals("Supreme")) {
-//                changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
-//                ingredients.setAll("Tomato Sauce", "Pepperoni", "Sausage", "Ham", "Green Pepper", "Onion");
-//            }
-//        });
-//    }
 
 
     public void initialize() {
@@ -84,7 +48,6 @@ public class SpecialityPizzaController {
             {
                 changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
                 ingredients.setAll("Tomato Sauce", "Dont care");
-
 //                updateCost();
             }
             else if(newType.equals("Meatzza"))

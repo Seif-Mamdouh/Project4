@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1146ccde-975e-4ce2-adef-d7c48aaafcb0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Pizza.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/PizzaMaker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Sauce.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Size.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/SpecialityPizza.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/StoreOrders.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Toppings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/SpecialityPizzaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/SpecialityPizzaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/speciality-pizza.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/project4/speciality-pizza.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,15 +44,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;pizza&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/seifmamdouh/Dropbox/My Mac (seifs-air.lan)/Desktop/project4/src/main/resources/com/example/project4&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "pizza",
+    "last_opened_file_path": "/Users/seifmamdouh/Dropbox/My Mac (seifs-air.lan)/Desktop/project4/src/main/resources/com/example/project4",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/project4" />
@@ -57,6 +66,40 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.example.project4" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.SpecialityPizza">
+    <configuration name="PizzaMaker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.project4.RUpizza.PizzaMaker" />
+      <module name="project4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.project4.RUpizza.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpecialityPizza" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.project4.RUpizza.SpecialityPizza" />
+      <module name="project4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.project4.RUpizza.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SpecialityPizza" />
+        <item itemvalue="Application.PizzaMaker" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
