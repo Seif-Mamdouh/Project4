@@ -96,9 +96,4 @@ public class SpecialityPizza extends Pizza {
         return pizzaDetails.toString();
     }
 
-        public static void main(String[] args) {
-            SpecialityPizza deluxePizza = new SpecialityPizza("Deluxe", Size.MEDIUM, Sauce.TOMATO, false, false);
-
-            System.out.println(deluxePizza);
-        }
 }

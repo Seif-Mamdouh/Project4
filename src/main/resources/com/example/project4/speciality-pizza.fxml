@@ -29,9 +29,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <ComboBox fx:id="typeComboBox" prefHeight="40.0" prefWidth="184.0" promptText="Deluxe" visibleRowCount="3" GridPane.halignment="CENTER">
+                <ComboBox fx:id="pizzaTypeComboBox" prefHeight="40.0" prefWidth="184.0" promptText="Deluxe" visibleRowCount="3" GridPane.halignment="CENTER">
                     <GridPane.margin>
                         <Insets left="40.0" />
+                    </GridPane.margin>
+                </ComboBox>
+                <ComboBox fx:id="sizeTypeComboBox" layoutX="10.0" prefHeight="20.0" prefWidth="150.0" promptText="Small" visibleRowCount="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="30.0" right="150.0" />
                     </GridPane.margin>
                 </ComboBox>
                 <ImageView fx:id="pizzaView" fitHeight="109.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
@@ -42,7 +47,7 @@
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Label text="\$0.00">
+                        <Label fx:id="pizzaSubTotalLabel" text="\$14.00">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -56,7 +61,7 @@
                 </HBox>
                 <VBox alignment="CENTER" prefHeight="109.0" prefWidth="215.0" spacing="5.0" GridPane.rowIndex="1">
                 <children>
-                    <ListView fx:id="ingredientsListView" prefHeight="125.0" prefWidth="169.0">
+                    <ListView fx:id="ingredientsListView" prefHeight="125.0" prefWidth="195.0">
                             <Font size="8.0" />
                     </ListView>
                 </children>
