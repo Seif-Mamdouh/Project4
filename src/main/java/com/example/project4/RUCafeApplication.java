@@ -21,7 +21,6 @@ public class RUCafeApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RUCafeApplication.class.getResource("main-menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 602, 443);
-
         stage.setTitle("RUCafe - Main Menu");
         stage.setScene(scene);
         stage.setResizable(false);

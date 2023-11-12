@@ -15,7 +15,8 @@ import java.io.IOException;
  * @author
  */
 public class MainMenuController {
-
+    @FXML
+    public Button specialtyPizzaButton;
     @FXML
     private Button orderCoffeeButton;
     @FXML
@@ -24,6 +25,22 @@ public class MainMenuController {
     private Button storeOrdersButton;
     @FXML
     private Button orderDonutsButton;
+
+    /**
+     * Handles clicking Specialty Order  button. Disables button until new window is closed.
+     */
+    @FXML
+    private void pizzaButtonClicked(ActionEvent actionEvent) throws IOException {
+        specialtyPizzaButton.setDisable(true);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("speciality-pizza.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.setTitle("RUCafe - Store Orders");
+        newStage.setResizable(false);
+        newStage.setOnCloseRequest(e -> specialtyPizzaButton.setDisable(false));
+        newStage.show();
+    }
 
     /**
      * Handles clicking order coffee button. Disables button until new window is closed.
