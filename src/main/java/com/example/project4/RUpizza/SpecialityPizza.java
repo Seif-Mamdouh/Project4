@@ -1,17 +1,13 @@
 package com.example.project4.RUpizza;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-
 
 public class SpecialityPizza extends Pizza {
 
-    private final PizzaType pizzaType;
+    private PizzaType pizzaType;
 
-    public SpecialityPizza(PizzaType pizzaType, Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
+    public SpecialityPizza(PizzaType pizzaType, Size size, boolean extraSauce, boolean extraCheese) {
         this.pizzaType = pizzaType;
         this.size = size;
-        this.sauce = sauce;
         this.extraSauce = extraSauce;
         this.extraCheese = extraCheese;
     }
@@ -26,19 +22,33 @@ public class SpecialityPizza extends Pizza {
     }
 
     private double calculateBasePrice() {
-        // Your implementation for base price calculation
-        return 0.0;
-    }
-
-    private double calculateSizePrice() {
-        // Your implementation for size price calculation
-        return switch (size) {
-            case SMALL -> 14.99;
-            case MEDIUM -> 16.99;
-            case LARGE -> 20.99;
+        return switch (pizzaType) {
+            case DELUXE -> switch (size) {
+                case SMALL, MEDIUM, LARGE -> 14.99;
+            };
+            case SUPREME -> switch (size) {
+                case SMALL, MEDIUM, LARGE -> 15.99;
+            };
+            case MEATZZA-> switch (size) {
+                case SMALL, MEDIUM, LARGE -> 16.99;
+            };
+            case SEAFOOD -> switch (size) {
+                case SMALL, MEDIUM, LARGE -> 17.99;
+            };
+            case PEPPERONI -> switch (size) {
+                case SMALL, MEDIUM, LARGE -> 10.99;
+            };
+            default -> 0.0;
         };
     }
 
+    private double calculateSizePrice() {
+        return switch (size) {
+            case SMALL -> 0.0;  // No additional cost for small size
+            case MEDIUM -> 2.0; // Additional $2 for medium size
+            case LARGE -> 4.0;  // Additional $4 for large size
+        };
+    }
     private double calculateExtraSauceAndCheesePrice() {
         double extraSaucePrice = extraSauce ? 1.0 : 0.0;
         double extraCheesePrice = extraCheese ? 1.0 : 0.0;
@@ -46,12 +56,12 @@ public class SpecialityPizza extends Pizza {
         return extraSaucePrice + extraCheesePrice;
     }
 
+
     @Override
     public String toString() {
         StringBuilder pizzaDetails = new StringBuilder();
         pizzaDetails.append("Pizza Type: ").append(pizzaType).append("\n");
         pizzaDetails.append("Size: ").append(size).append("\n");
-        pizzaDetails.append("Sauce: ").append(sauce).append("\n");
         pizzaDetails.append("Extra Sauce: ").append(extraSauce).append("\n");
         pizzaDetails.append("Extra Cheese: ").append(extraCheese).append("\n");
         pizzaDetails.append("Total Price: $").append(calculatePrice()).append("\n");

@@ -27,10 +27,10 @@ public abstract class Pizza {
         this.extraCheese = extraCheese;
     }
 
-    public static Pizza createPizza(PizzaType pizzaType, Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
+    public static Pizza createPizza(PizzaType pizzaType, Size size, boolean extraSauce, boolean extraCheese) {
         return switch (pizzaType) {
-            case DELUXE, SUPREME, MEATZZA, SEAFOOD, PEPPERONI -> new SpecialityPizza(pizzaType, size, sauce, extraSauce, extraCheese);
-            case BUILD_YOUR_OWN -> new BuildYourOwnPizza(size, sauce, extraSauce, extraCheese, toppings);
+            case DELUXE, SUPREME, MEATZZA, SEAFOOD, PEPPERONI -> new SpecialityPizza(pizzaType, size, extraSauce, extraCheese);
+            case BUILD_YOUR_OWN -> new BuildYourOwnPizza(size, extraSauce, extraCheese, toppings);
         };
     }
 
