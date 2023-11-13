@@ -3,7 +3,7 @@ package com.example.project4.RUpizza;
 import java.util.ArrayList;
 
 public abstract class Pizza {
-    protected static ArrayList<String> toppings;
+    protected ArrayList<String> toppings;
     protected Size size;
     protected Sauce sauce;
     protected boolean extraSauce;
@@ -18,7 +18,6 @@ public abstract class Pizza {
         DELUXE, SUPREME, MEATZZA, SEAFOOD, PEPPERONI, BUILD_YOUR_OWN
     }
 
-    // Constructor
     public Pizza(ArrayList<String> toppings, Size size, Sauce sauce, boolean extraSauce, boolean extraCheese) {
         this.toppings = toppings;
         this.size = size;
@@ -30,7 +29,7 @@ public abstract class Pizza {
     public static Pizza createPizza(PizzaType pizzaType, Size size, boolean extraSauce, boolean extraCheese) {
         return switch (pizzaType) {
             case DELUXE, SUPREME, MEATZZA, SEAFOOD, PEPPERONI -> new SpecialityPizza(pizzaType, size, extraSauce, extraCheese);
-            case BUILD_YOUR_OWN -> new BuildYourOwnPizza(size, extraSauce, extraCheese, toppings);
+            case BUILD_YOUR_OWN -> new BuildYourOwnPizza(size, extraSauce, extraCheese, new ArrayList<>());
         };
     }
 

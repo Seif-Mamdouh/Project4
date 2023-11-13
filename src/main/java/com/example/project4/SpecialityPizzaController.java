@@ -1,9 +1,6 @@
 package com.example.project4;
 
-import com.example.project4.RUpizza.Size;
-import com.example.project4.RUpizza.Order;
-import com.example.project4.RUpizza.Pizza;
-import com.example.project4.RUpizza.PizzaMaker;
+import com.example.project4.RUpizza.*;
 
 
 import javafx.collections.FXCollections;
@@ -150,7 +147,7 @@ public class SpecialityPizzaController {
 
         Pizza specialityPizza = PizzaMaker.createPizza(Pizza.PizzaType.valueOf(selectedPizzaType), selectedSize, isExtraSauce, isExtraCheese);
 
-        if (Order.getPizzaOrder().addPizza(specialityPizza)) {
+        if (Order.getPizzaOrder().addPizza((SpecialityPizza) specialityPizza)) {
             showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
 
             System.out.println("Order Details:");
