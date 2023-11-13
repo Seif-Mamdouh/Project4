@@ -1,11 +1,16 @@
 package com.example.project4.RUpizza;
 
 
+import com.example.project4.CurrentOrderViewController;
+
 public class SpecialityPizza extends Pizza {
 
     private PizzaType pizzaType;
     private int pizzaID;
     private static int pizzaCount = 0;
+
+//    private CurrentOrderViewController currentOrderViewController;  // Add this field
+
 
     public SpecialityPizza(PizzaType pizzaType, Size size, boolean extraSauce, boolean extraCheese) {
         this.pizzaType = pizzaType;

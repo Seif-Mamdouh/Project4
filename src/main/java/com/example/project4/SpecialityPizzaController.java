@@ -44,6 +44,9 @@ public class SpecialityPizzaController {
     private CheckBox extraCheese;
 
 
+    private CurrentOrderViewController currentOrderViewController;
+
+
 
 
     public void initialize() {
@@ -125,7 +128,6 @@ public class SpecialityPizzaController {
 
         double totalCost = calculateCost(selectedPizzaType, selectedSize);
 
-        // Add $1 for each checked checkbox
         if (extraSauce.isSelected()) {
             totalCost += 1.0;
         }
@@ -151,7 +153,7 @@ public class SpecialityPizzaController {
             showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
 
             System.out.println("Order Details:");
-            for (Pizza pizza : Order.getPizzaOrder().getPizzas()) {
+            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
                 System.out.println(pizza.toString());
             }
 
