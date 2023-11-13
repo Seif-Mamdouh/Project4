@@ -30,12 +30,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <ComboBox fx:id="pizzaTypeComboBox" prefHeight="40.0" prefWidth="184.0" promptText="Deluxe" visibleRowCount="3" GridPane.halignment="CENTER">
+                <ComboBox fx:id="pizzaTypeComboBox" prefHeight="40.0" prefWidth="184.0"  visibleRowCount="3" GridPane.halignment="CENTER">
                     <GridPane.margin>
                         <Insets left="40.0" />
                     </GridPane.margin>
                 </ComboBox>
-                <ComboBox fx:id="sizeTypeComboBox" layoutX="10.0" prefHeight="26.0" prefWidth="91.0" promptText="Small" visibleRowCount="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                <ComboBox fx:id="sizeTypeComboBox" layoutX="10.0" prefHeight="26.0" prefWidth="91.0" visibleRowCount="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets bottom="80.0" left="20.0" right="50.0" />
                     </GridPane.margin>
@@ -70,7 +70,7 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" text="Add to Order" />
+                        <Button onAction="#onAddOrderClicked" alignment="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" text="Add to Order" />
                     </children>
                 </HBox>
                 <VBox alignment="CENTER" prefHeight="109.0" prefWidth="215.0" spacing="5.0" GridPane.rowIndex="1">

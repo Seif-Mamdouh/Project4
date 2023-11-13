@@ -1,12 +1,17 @@
 package com.example.project4;
 
-import com.example.project4.RUpizza.Size;
+import com.example.project4.RUpizza.*;
+
+
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,6 +24,8 @@ import javafx.scene.control.ListView;
 
 
 public class SpecialityPizzaController {
+    @FXML
+    private Order order;
     @FXML
     private ComboBox<String> pizzaTypeComboBox;
     @FXML
@@ -35,6 +42,10 @@ public class SpecialityPizzaController {
     private CheckBox extraSauce;
     @FXML
     private CheckBox extraCheese;
+
+
+    private CurrentOrderViewController currentOrderViewController;
+
 
 
 
@@ -117,7 +128,6 @@ public class SpecialityPizzaController {
 
         double totalCost = calculateCost(selectedPizzaType, selectedSize);
 
-        // Add $1 for each checked checkbox
         if (extraSauce.isSelected()) {
             totalCost += 1.0;
         }
@@ -128,18 +138,56 @@ public class SpecialityPizzaController {
         pizzaSubTotalLabel.setText(String.format("$%.2f", totalCost));
     }
 
+    @FXML
+    private void onAddOrderClicked() {
+        // Parse the values
+        String selectedPizzaType = pizzaTypeComboBox.getValue().toUpperCase();
+        Size selectedSize = sizeTypeComboBox.getValue();
+        boolean isExtraSauce = extraSauce.isSelected();
+        boolean isExtraCheese = extraCheese.isSelected();
+
+
+        Pizza specialityPizza = PizzaMaker.createPizza(Pizza.PizzaType.valueOf(selectedPizzaType), selectedSize, isExtraSauce, isExtraCheese);
+
+        if (Order.getPizzaOrder().addPizza((SpecialityPizza) specialityPizza)) {
+            showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
+
+            System.out.println("Order Details:");
+            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
+                System.out.println(pizza.toString());
+            }
+
+        } else {
+            showErrorAlert("Error", "Failed to add the pizza to the order.");
+        }
+
+
+    }
+
+    private void showSuccessAlert(String title, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
+    private void showErrorAlert(String title, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
+
 
     private double calculateCost(String pizzaType, Size size) {
         double basePrice = getBasePrice(pizzaType, size);
         return basePrice;
     }
 
-    /**
-     * Function to update the pizza price according to the price
-     * @param pizzaType
-     * @param size
-     * @return
-     */
+
     private double getBasePrice(String pizzaType, Size size) {
         switch (pizzaType) {
             case "Deluxe":
