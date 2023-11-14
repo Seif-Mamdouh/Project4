@@ -59,7 +59,7 @@ public class SpecialityPizzaController {
         pizzaTypeComboBox.getSelectionModel().selectFirst();
 
         sizeTypeComboBox.getItems().removeAll(sizeTypeComboBox.getItems());
-        sizeTypeComboBox.getItems().addAll(Size.values());  // Use the Size enum values
+        sizeTypeComboBox.getItems().addAll(Size.values());
         sizeTypeComboBox.getSelectionModel().selectFirst();
 
         extraSauce.setOnAction(event -> updateCost());

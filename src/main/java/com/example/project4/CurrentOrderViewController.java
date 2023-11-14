@@ -4,15 +4,16 @@ package com.example.project4;
 
 import com.example.project4.RUpizza.Order;
 import com.example.project4.RUpizza.Pizza;
+import com.example.project4.RUpizza.Size;
 import com.example.project4.RUpizza.SpecialityPizza;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class to handle interactions with current order view window.
@@ -24,7 +25,9 @@ public class CurrentOrderViewController {
     @FXML
     private ListView<Object> orderView;
     @FXML
-    private Button removeItemButton;
+    private ComboBox <Integer> pizzaIDComboBox;
+    @FXML
+    private Button removeItemButton ;
     @FXML
     private Button placeOrderButton;
     @FXML
@@ -35,15 +38,61 @@ public class CurrentOrderViewController {
     private Label currentOrderTotalLabel;
 
 
+
     public void initialize() {
+
         orderView.setItems(Order.getPizzaOrder().getPizzas());
         orderView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        Order pizzaOrder = Order.getPizzaOrder();
+
+        // Set up an event listener for the ComboBox
+        pizzaIDComboBox.setOnAction(event -> filterListViewByPizzaId(pizzaOrder));
+
+        // Set initial selection in the ComboBox
+        pizzaIDComboBox.getSelectionModel().selectFirst();
+
+        // Initialize the ListView
+        orderView.setItems(pizzaOrder.getPizzas());
+        orderView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        // Populate the ComboBox with Pizza IDs
+        pizzaIDComboBox.getItems().addAll(getPizzaIds(pizzaOrder));
+
+
+    }
+
+
+    private List<Integer> getPizzaIds(Order pizzaOrder) {
+        List<Integer> pizzaIds = new ArrayList<>();
+        for (Object pizzaObject : pizzaOrder.getPizzas()) {
+            if (pizzaObject instanceof SpecialityPizza) {
+                pizzaIds.add(((SpecialityPizza) pizzaObject).getPizzaID());
+            }
+        }
+        return pizzaIds;
+    }
+
+    private void filterListViewByPizzaId(Order pizzaOrder) {
+        Integer selectedPizzaId = pizzaIDComboBox.getValue();
+
+        // Filter the ListView based on the selected Pizza ID
+        ObservableList<Object> filteredPizzas = FXCollections.observableArrayList();
+        for (Object pizzaObject : pizzaOrder.getPizzas()) {
+            if (pizzaObject instanceof SpecialityPizza) {
+                if (((SpecialityPizza) pizzaObject).getPizzaID().equals(selectedPizzaId)) {
+                    filteredPizzas.add(pizzaObject);
+                }
+            }
+        }
+
+        // Update the ListView with the filtered pizzas
+        orderView.setItems(filteredPizzas);
     }
 
 
 
-
-}
+};
 
 
 //    /**

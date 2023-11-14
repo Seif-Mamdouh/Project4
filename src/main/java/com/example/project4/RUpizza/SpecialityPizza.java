@@ -1,8 +1,6 @@
 package com.example.project4.RUpizza;
 
 
-import com.example.project4.CurrentOrderViewController;
-
 public class SpecialityPizza extends Pizza {
 
     private PizzaType pizzaType;
@@ -69,14 +67,46 @@ public class SpecialityPizza extends Pizza {
     public String toString() {
         StringBuilder pizzaDetails = new StringBuilder();
         pizzaDetails.append(pizzaID).append("\n");
-        pizzaDetails.append(pizzaType).append("\n");
-        pizzaDetails.append(size).append("\n");
-        pizzaDetails.append(extraSauce).append("\n");
-        pizzaDetails.append(extraCheese).append("\n");
-        pizzaDetails.append(calculatePrice()).append("\n");
+        pizzaDetails.append("Pizza Type: ").append(pizzaType).append("\n");
+        pizzaDetails.append("Size: ").append(size).append("\n");
+
+        // Check if extraCheese is true and append the corresponding information
+        if (extraCheese) {
+            pizzaDetails.append("Extra Cheese: yes\n");
+        } else {
+            pizzaDetails.append("Extra Cheese: no\n");
+        }
+
+        // Check if extraSauce is true and append the corresponding information
+        if (extraSauce) {
+            pizzaDetails.append("Extra Sauce: yes\n");
+        } else {
+            pizzaDetails.append("Extra Sauce: no\n");
+        }
+
+        pizzaDetails.append("Total Price: $").append(calculatePrice()).append("\n");
 
         return pizzaDetails.toString();
     }
+
+    public Integer getPizzaID() {
+        return pizzaID;
+    }
+
+
+//    @Override
+//    public String toString() {
+//        StringBuilder pizzaDetails = new StringBuilder();
+//        pizzaDetails.append(pizzaID).append("\n");
+//        pizzaDetails.append(pizzaType).append("\n");
+//        pizzaDetails.append(size).append("\n");
+//        pizzaDetails.append(extraSauce).append("\n");
+//        pizzaDetails.append(extraCheese).append("\n");
+//        pizzaDetails.append(calculatePrice()).append("\n");
+//
+//        return pizzaDetails.toString();
+//    }
+
 
 }
 
