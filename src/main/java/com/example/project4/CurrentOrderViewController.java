@@ -1,6 +1,6 @@
 package com.example.project4;
 
-//import com.example.project4.model.Order;
+import com.example.project4.StoreOrdersViewController;
 
 import com.example.project4.RUpizza.Order;
 import com.example.project4.RUpizza.Pizza;
@@ -10,10 +10,18 @@ import com.example.project4.RUpizza.SpecialityPizza;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 /**
  * Class to handle interactions with current order view window.
@@ -61,9 +69,32 @@ public class CurrentOrderViewController {
 
         updateListViewAndLabels(pizzaOrder);
 
+        removeItemButton.setOnAction(event -> removeSelectedPizza());
 
     }
 
+
+    private void removeSelectedPizza() {
+        int selectedPizzaId = pizzaIDComboBox.getValue();
+
+        // Get the selected pizza from the order
+        SpecialityPizza selectedPizza = null;
+        for (Object pizzaObject : Order.getPizzaOrder().getPizzas()) {
+            if (pizzaObject instanceof SpecialityPizza) {
+                SpecialityPizza pizza = (SpecialityPizza) pizzaObject;
+                if (pizza.getPizzaID() == selectedPizzaId) {
+                    selectedPizza = pizza;
+                    break;
+                }
+            }
+        }
+
+        // Remove the selected pizza from the order
+        if (selectedPizza != null) {
+            Order.getPizzaOrder().getPizzas().remove(selectedPizza);
+            updateListViewAndLabels(Order.getPizzaOrder());
+        }
+    }
 
     private List<Integer> getPizzaIds(Order pizzaOrder) {
         List<Integer> pizzaIds = new ArrayList<>();
@@ -107,18 +138,15 @@ public class CurrentOrderViewController {
             }
         }
 
-        // Update the labels with the calculated values
         currentOrderSubtotalLabel.setText(String.format("Subtotal: $%.2f", subtotal));
         currentOrderSalesTaxLabel.setText(String.format("Sales Tax: $%.2f", salesTax));
         currentOrderTotalLabel.setText(String.format("Total: $%.2f", total));
     }
 
     private void updateListViewAndLabels(Order pizzaOrder) {
-        // Initialize the ListView
         orderView.setItems(pizzaOrder.getPizzas());
         orderView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        // Update the labels with the initial order
         updateLabels(pizzaOrder.getPizzas());
     }
 
