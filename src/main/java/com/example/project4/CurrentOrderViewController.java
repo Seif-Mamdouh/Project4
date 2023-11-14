@@ -4,17 +4,20 @@ package com.example.project4;
 
 import com.example.project4.RUpizza.Order;
 import com.example.project4.RUpizza.Pizza;
+import com.example.project4.RUpizza.SpecialityPizza;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-        import javafx.fxml.FXML;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 
 /**
  * Class to handle interactions with current order view window.
  *
- * @author
+ * @author Seifeldeen Mohamed
  */
 public class CurrentOrderViewController {
 
@@ -30,8 +33,13 @@ public class CurrentOrderViewController {
     private Label currentOrderSalesTaxLabel;
     @FXML
     private Label currentOrderTotalLabel;
-    @FXML
-    private ObservableList<Object> orderItems = FXCollections.observableArrayList();
+
+
+    public void initialize() {
+        orderView.setItems(Order.getPizzaOrder().getPizzas());
+        orderView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
+
 
 
 

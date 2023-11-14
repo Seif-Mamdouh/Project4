@@ -35,8 +35,8 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                     <children>
-                        <Button fx:id="removeItemButton" mnemonicParsing="false" onAction="#removeItemButtonClicked" text="Remove Item" />
-                        <Button fx:id="placeOrderButton" mnemonicParsing="false" onAction="#placeOrderButtonClicked" text="Place Order" />
+                        <Button fx:id="removeItemButton" mnemonicParsing="false" text="Remove Item" />
+                        <Button fx:id="placeOrderButton" mnemonicParsing="false" text="Place Order" />
                     </children>
                     <VBox.margin>
                         <Insets top="20.0" />
