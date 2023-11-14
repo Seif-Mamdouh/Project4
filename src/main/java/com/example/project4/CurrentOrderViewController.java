@@ -59,6 +59,8 @@ public class CurrentOrderViewController {
         // Populate the ComboBox with Pizza IDs
         pizzaIDComboBox.getItems().addAll(getPizzaIds(pizzaOrder));
 
+        updateListViewAndLabels(pizzaOrder);
+
 
     }
 
@@ -88,9 +90,37 @@ public class CurrentOrderViewController {
 
         // Update the ListView with the filtered pizzas
         orderView.setItems(filteredPizzas);
+        updateLabels(filteredPizzas);
     }
 
+    private void updateLabels(ObservableList<Object> pizzas) {
+        double subtotal = 0;
+        double salesTax = 0;
+        double total = 0;
 
+        for (Object pizzaObject : pizzas) {
+            if (pizzaObject instanceof SpecialityPizza) {
+                SpecialityPizza pizza = (SpecialityPizza) pizzaObject;
+                subtotal += pizza.calculatePrice();
+                salesTax += pizza.calculateTax();
+                total += pizza.total();
+            }
+        }
+
+        // Update the labels with the calculated values
+        currentOrderSubtotalLabel.setText(String.format("Subtotal: $%.2f", subtotal));
+        currentOrderSalesTaxLabel.setText(String.format("Sales Tax: $%.2f", salesTax));
+        currentOrderTotalLabel.setText(String.format("Total: $%.2f", total));
+    }
+
+    private void updateListViewAndLabels(Order pizzaOrder) {
+        // Initialize the ListView
+        orderView.setItems(pizzaOrder.getPizzas());
+        orderView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        // Update the labels with the initial order
+        updateLabels(pizzaOrder.getPizzas());
+    }
 
 };
 

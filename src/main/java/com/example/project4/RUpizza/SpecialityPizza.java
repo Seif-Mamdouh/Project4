@@ -7,7 +7,7 @@ public class SpecialityPizza extends Pizza {
     private int pizzaID;
     private static int pizzaCount = 0;
 
-//    private CurrentOrderViewController currentOrderViewController;  // Add this field
+    public static final double TAX_RATE = 0.06625;
 
 
     public SpecialityPizza(PizzaType pizzaType, Size size, boolean extraSauce, boolean extraCheese) {
@@ -17,6 +17,15 @@ public class SpecialityPizza extends Pizza {
         this.extraCheese = extraCheese;
         this.pizzaID = pizzaCount++;
     }
+
+    public double total(){
+        return calculateTax() + calculatePrice();
+    }
+
+    public double calculateTax() {
+        return calculatePrice() * TAX_RATE;
+    }
+
 
     @Override
     public double calculatePrice() {
@@ -62,6 +71,10 @@ public class SpecialityPizza extends Pizza {
         return extraSaucePrice + extraCheesePrice;
     }
 
+    public Integer getPizzaID() {
+        return pizzaID;
+    }
+
 
     @Override
     public String toString() {
@@ -85,27 +98,12 @@ public class SpecialityPizza extends Pizza {
         }
 
         pizzaDetails.append("Total Price: $").append(calculatePrice()).append("\n");
+        pizzaDetails.append("Tax: $").append(calculateTax()).append("\n");
+        pizzaDetails.append("Total: $").append(total()).append("\n");
 
         return pizzaDetails.toString();
     }
 
-    public Integer getPizzaID() {
-        return pizzaID;
-    }
-
-
-//    @Override
-//    public String toString() {
-//        StringBuilder pizzaDetails = new StringBuilder();
-//        pizzaDetails.append(pizzaID).append("\n");
-//        pizzaDetails.append(pizzaType).append("\n");
-//        pizzaDetails.append(size).append("\n");
-//        pizzaDetails.append(extraSauce).append("\n");
-//        pizzaDetails.append(extraCheese).append("\n");
-//        pizzaDetails.append(calculatePrice()).append("\n");
-//
-//        return pizzaDetails.toString();
-//    }
 
 
 }
