@@ -24,8 +24,9 @@ import java.util.List;
 
 
 /**
- * Class to handle interactions with current order view window.
- *
+ * Controller class for handling interactions with the current order view window.
+ * Manages the display and manipulation of the current order, including adding and removing items.
+ * This class is responsible for initializing the view components and handling user actions.
  * @author Seifeldeen Mohamed
  */
 public class CurrentOrderViewController {
@@ -45,10 +46,13 @@ public class CurrentOrderViewController {
     @FXML
     private Label currentOrderTotalLabel;
 
-
-
+    /**
+     * Initializes the controller. Sets up event listeners, initializes UI components,
+     * and populates the view with the current order information.
+     */
     public void initialize() {
 
+        // Set up the ListView for displaying the current order
         orderView.setItems(Order.getPizzaOrder().getPizzas());
         orderView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
@@ -74,6 +78,10 @@ public class CurrentOrderViewController {
     }
 
 
+    /**
+     * Removes the selected pizza from the current order and updates the view.
+     * Displays an alert to inform the user about the removal.
+     */
     private void removeSelectedPizza() {
         int selectedPizzaId = pizzaIDComboBox.getValue();
 
@@ -93,9 +101,11 @@ public class CurrentOrderViewController {
         if (selectedPizza != null) {
             Order.getPizzaOrder().getPizzas().remove(selectedPizza);
             updateListViewAndLabels(Order.getPizzaOrder());
-        } else {
-        // Handle the case where no pizza ID is selected (display an error, etc.)
-        System.out.println("No pizza ID selected.");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Order Removed");
+            alert.setHeaderText("You've removed an item from your order.");
+            alert.showAndWait();
         }
     }
 
@@ -109,6 +119,11 @@ public class CurrentOrderViewController {
         return pizzaIds;
     }
 
+    /**
+     * Filters the ListView by the selected Pizza ID and updates the view accordingly.
+     *
+     * @param pizzaOrder The current order.
+     */
     private void filterListViewByPizzaId(Order pizzaOrder) {
         Integer selectedPizzaId = pizzaIDComboBox.getValue();
 
@@ -127,6 +142,11 @@ public class CurrentOrderViewController {
         updateLabels(filteredPizzas);
     }
 
+    /**
+     * Updates the labels displaying subtotal, sales tax, and total based on the provided list of pizzas.
+     *
+     * @param pizzas The list of pizzas for which to calculate and display the labels.
+     */
     private void updateLabels(ObservableList<Object> pizzas) {
         double subtotal = 0;
         double salesTax = 0;
@@ -146,6 +166,11 @@ public class CurrentOrderViewController {
         currentOrderTotalLabel.setText(String.format("Total: $%.2f", total));
     }
 
+    /**
+     * Updates the ListView and labels based on the provided order.
+     *
+     * @param pizzaOrder The order to be displayed in the view.
+     */
     private void updateListViewAndLabels(Order pizzaOrder) {
         orderView.setItems(pizzaOrder.getPizzas());
         orderView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

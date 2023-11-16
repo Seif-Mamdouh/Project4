@@ -10,7 +10,12 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/BuildYourOwnPizza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/BuildYourOwnPizza.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Pizza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Pizza.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/PizzaMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/PizzaMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Size.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/Size.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/SpecialityPizza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUpizza/SpecialityPizza.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/SpecialityPizzaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/SpecialityPizzaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/main-menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/project4/main-menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/speciality-pizza.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/project4/speciality-pizza.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

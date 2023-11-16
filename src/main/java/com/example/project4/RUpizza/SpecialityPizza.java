@@ -1,13 +1,27 @@
 package com.example.project4.RUpizza;
 
-
+/**
+ * Represents a specialty pizza in the pizza ordering system, extending the base Pizza class.
+ * Manages details such as pizza type, size, and additional toppings like extra sauce and cheese.
+ * Provides methods to calculate the total price, tax, and display pizza details.
+ * Implements the setOrderID method to assign a unique order ID to each specialty pizza.
+ *
+ * @author Seifeldeen Mohamed
+ */
 public class SpecialityPizza extends Pizza {
 
     private PizzaType pizzaType;
     public static final double TAX_RATE = 0.06625;
     private int orderID;
 
-
+    /**
+     * Constructs a SpecialityPizza with the specified parameters.
+     *
+     * @param pizzaType   The type of specialty pizza.
+     * @param size        The size of the pizza (small, medium, large).
+     * @param extraSauce  Indicates whether extra sauce is added.
+     * @param extraCheese Indicates whether extra cheese is added.
+     */
     public SpecialityPizza(PizzaType pizzaType, Size size, boolean extraSauce, boolean extraCheese) {
         this.pizzaType = pizzaType;
         this.size = size;
@@ -15,25 +29,48 @@ public class SpecialityPizza extends Pizza {
         this.extraCheese = extraCheese;
     }
 
+    /**
+     * Sets the order ID for the specialty pizza.
+     *
+     * @param orderID The unique order ID to be assigned to the pizza.
+     */
     @Override
     public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
+    /**
+     * Retrieves the order ID of the specialty pizza.
+     *
+     * @return The order ID of the pizza.
+     */
     public Integer getPizzaID() {
         return orderID;
     }
 
+    /**
+     * Calculates the total cost of the specialty pizza, including tax.
+     *
+     * @return The total cost of the pizza.
+     */
     public double total(){
         return calculateTax() + calculatePrice();
     }
-
+    /**
+     * Calculates the tax amount for the specialty pizza.
+     *
+     * @return The tax amount for the pizza.
+     */
     public double calculateTax() {
         return calculatePrice() * TAX_RATE;
     }
 
 
-
+    /**
+     * Calculates the total price of the specialty pizza.
+     *
+     * @return The total price of the pizza.
+     */
     @Override
     public double calculatePrice() {
         double basePrice = calculateBasePrice();
@@ -42,7 +79,11 @@ public class SpecialityPizza extends Pizza {
 
         return basePrice + sizePrice + extraSauceAndCheesePrice;
     }
-
+    /**
+     * Initializes the base prices for each pizza type
+     *
+     * @return The total price of the pizza.
+     */
     private double calculateBasePrice() {
         return switch (pizzaType) {
             case DELUXE -> switch (size) {
@@ -64,6 +105,7 @@ public class SpecialityPizza extends Pizza {
         };
     }
 
+
     private double calculateSizePrice() {
         return switch (size) {
             case SMALL -> 0.0;  // No additional cost for small size
@@ -78,7 +120,11 @@ public class SpecialityPizza extends Pizza {
         return extraSaucePrice + extraCheesePrice;
     }
 
-
+    /**
+     * Returns a string representation of the specialty pizza, including order details.
+     *
+     * @return A string representation of the pizza.
+     */
 
     @Override
     public String toString() {

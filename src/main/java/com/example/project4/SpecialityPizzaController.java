@@ -18,9 +18,19 @@ import java.util.Arrays;
 import javafx.collections.ObservableList;
 
 
+
+/**
+ * Controller class for handling interactions with the Speciality Pizza view.
+ * Manages the display and selection of pizza types, sizes, and toppings.
+ * Allows users to customize and add pizzas to the order.
+ * This class is responsible for initializing the view components, handling user actions,
+ * and updating the displayed information based on user selections.
+ *
+ * @Seifeldeen Mohamed
+ **/
 public class SpecialityPizzaController {
     @FXML
-    private Button addToOrderButton;
+    private Button onAddOrderClicked;
     @FXML
     private ComboBox<String> pizzaTypeComboBox;
     @FXML
@@ -39,10 +49,12 @@ public class SpecialityPizzaController {
     private CheckBox extraCheese;
 
 
-
-
+    /**
+     * Initializes the controller. Sets up event listeners, initializes UI components,
+     * and populates the view with default pizza information.
+     */
     public void initialize() {
-        pizzaSubTotalLabel.setText("$0.00");
+        pizzaSubTotalLabel.setText("$14.99");
 
         ingredients = FXCollections.observableArrayList();
 
@@ -113,6 +125,9 @@ public class SpecialityPizzaController {
         pizzaView.setImage(newPic);
     }
 
+    /**
+     * Updates the cost label based on the selected pizza type, size, and additional toppings.
+     */
     @FXML
     private void updateCost() {
         String selectedPizzaType = pizzaTypeComboBox.getValue();
@@ -130,6 +145,11 @@ public class SpecialityPizzaController {
         pizzaSubTotalLabel.setText(String.format("$%.2f", totalCost));
     }
 
+    /**
+     * Handles the event when the "Add to Order" button is clicked.
+     * Parses user selections and creates a speciality pizza, adding it to the order.
+     * Displays success or error alerts based on the result.
+     */
     @FXML
     private void onAddOrderClicked() {
         // Parse the values
@@ -156,6 +176,12 @@ public class SpecialityPizzaController {
 
     }
 
+    /**
+     * Displays a success alert with the given title and content text.
+     *
+     * @param title       The title of the success alert.
+     * @param contentText The content text of the success alert.
+     */
     private void showSuccessAlert(String title, String contentText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -164,6 +190,12 @@ public class SpecialityPizzaController {
         alert.showAndWait();
     }
 
+    /**
+     * Displays an error alert with the given title and content text.
+     *
+     * @param title       The title of the error alert.
+     * @param contentText The content text of the error alert.
+     */
     private void showErrorAlert(String title, String contentText) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -173,13 +205,26 @@ public class SpecialityPizzaController {
     }
 
 
-
+    /**
+     * Calculates the total cost of the pizza based on the selected pizza type, size, and additional toppings.
+     *
+     * @param pizzaType The selected pizza type.
+     * @param size      The selected pizza size.
+     * @return The total cost of the pizza.
+     */
     private double calculateCost(String pizzaType, Size size) {
         double basePrice = getBasePrice(pizzaType, size);
         return basePrice;
     }
 
 
+    /**
+     * Retrieves the base price of the pizza based on the selected pizza type and size.
+     *
+     * @param pizzaType The selected pizza type.
+     * @param size      The selected pizza size.
+     * @return The base price of the pizza.
+     */
     private double getBasePrice(String pizzaType, Size size) {
         switch (pizzaType) {
             case "Deluxe":
