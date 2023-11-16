@@ -9,6 +9,9 @@ public abstract class Pizza {
     protected boolean extraSauce;
     protected boolean extraCheese;
 
+//    Abstract method to set the order ID
+    public abstract void setOrderID(int orderID);
+
     public Pizza() {
 
     }

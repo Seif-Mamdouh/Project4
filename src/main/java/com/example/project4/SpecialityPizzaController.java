@@ -5,27 +5,22 @@ import com.example.project4.RUpizza.*;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import javafx.scene.control.CheckBox;
 
 
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 
 
 public class SpecialityPizzaController {
     @FXML
-    private Order order;
+    private Button addToOrderButton;
     @FXML
     private ComboBox<String> pizzaTypeComboBox;
     @FXML
@@ -42,9 +37,6 @@ public class SpecialityPizzaController {
     private CheckBox extraSauce;
     @FXML
     private CheckBox extraCheese;
-
-
-    private CurrentOrderViewController currentOrderViewController;
 
 
 

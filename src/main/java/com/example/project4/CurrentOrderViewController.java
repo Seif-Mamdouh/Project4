@@ -93,6 +93,9 @@ public class CurrentOrderViewController {
         if (selectedPizza != null) {
             Order.getPizzaOrder().getPizzas().remove(selectedPizza);
             updateListViewAndLabels(Order.getPizzaOrder());
+        } else {
+        // Handle the case where no pizza ID is selected (display an error, etc.)
+        System.out.println("No pizza ID selected.");
         }
     }
 

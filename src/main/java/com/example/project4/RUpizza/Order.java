@@ -7,20 +7,20 @@ import javafx.collections.ObservableList;
 public class Order {
     private static Order pizzaOrder = new Order();  // Singleton instance
     private ObservableList<Object> pizzas;
-    public static final double TAX_RATE = 0.06625;
     private static int orderIDCounter = 1;
-    private int orderID;
 
-    public Order() {
+    private Order() {
         this.pizzas = FXCollections.observableArrayList();
-        this.orderID = orderIDCounter++;
     }
 
     public static Order getPizzaOrder() {
         return pizzaOrder;
     }
 
-    public boolean addPizza(SpecialityPizza pizza) {
+    public boolean addPizza(Pizza pizza) {
+        if (pizza instanceof SpecialityPizza) {
+            ((SpecialityPizza) pizza).setOrderID(orderIDCounter++);
+        }
         return pizzas.add(pizza);
     }
 
@@ -28,28 +28,9 @@ public class Order {
         return pizzas;
     }
 
-    public int getOrderID() {
-        return orderID;
+    public int getOrderIDCounter() {
+        return orderIDCounter;
     }
-
-//    private int calculateSubTotal() {
-//        calculatePrice();
-//    }
-//
-//    private int calculateSalesTax() {
-//        return calculateSubTotal() * TAX_RATE;
-//    }
-//
-//    public int calculateTotal(){
-//        return calculateSalesTax() + calculateSubTotal();
-//    }
-
-
-//    @Override
-//    public String toString()
-//    {
-//        return "Order " + this.orderID + " Total: $" + String.format("%.2f", this.calculateTotal());
-//    }
 
 
 }

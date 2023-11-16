@@ -4,10 +4,8 @@ package com.example.project4.RUpizza;
 public class SpecialityPizza extends Pizza {
 
     private PizzaType pizzaType;
-    private int pizzaID;
-    private static int pizzaCount = 0;
-
     public static final double TAX_RATE = 0.06625;
+    private int orderID;
 
 
     public SpecialityPizza(PizzaType pizzaType, Size size, boolean extraSauce, boolean extraCheese) {
@@ -15,7 +13,15 @@ public class SpecialityPizza extends Pizza {
         this.size = size;
         this.extraSauce = extraSauce;
         this.extraCheese = extraCheese;
-        this.pizzaID = pizzaCount++;
+    }
+
+    @Override
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+
+    public Integer getPizzaID() {
+        return orderID;
     }
 
     public double total(){
@@ -25,6 +31,7 @@ public class SpecialityPizza extends Pizza {
     public double calculateTax() {
         return calculatePrice() * TAX_RATE;
     }
+
 
 
     @Override
@@ -71,26 +78,21 @@ public class SpecialityPizza extends Pizza {
         return extraSaucePrice + extraCheesePrice;
     }
 
-    public Integer getPizzaID() {
-        return pizzaID;
-    }
 
 
     @Override
     public String toString() {
         StringBuilder pizzaDetails = new StringBuilder();
-        pizzaDetails.append(pizzaID).append("\n");
+        pizzaDetails.append(orderID).append("\n");
         pizzaDetails.append("Pizza Type: ").append(pizzaType).append("\n");
         pizzaDetails.append("Size: ").append(size).append("\n");
 
-        // Check if extraCheese is true and append the corresponding information
         if (extraCheese) {
             pizzaDetails.append("Extra Cheese: yes\n");
         } else {
             pizzaDetails.append("Extra Cheese: no\n");
         }
 
-        // Check if extraSauce is true and append the corresponding information
         if (extraSauce) {
             pizzaDetails.append("Extra Sauce: yes\n");
         } else {
