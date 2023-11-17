@@ -54,7 +54,7 @@ public class MainMenuController {
         Scene scene = new Scene(loader.load());
         Stage newStage = new Stage();
         newStage.setScene(scene);
-        newStage.setTitle("RUCafe - Store Orders");
+        newStage.setTitle("Speciality Pizza");
         newStage.setResizable(false);
         newStage.setOnCloseRequest(e -> specialtyPizzaButton.setDisable(false));
         newStage.show();

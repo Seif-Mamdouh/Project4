@@ -18,6 +18,12 @@ public class BuildYourOwnPizza extends Pizza {
         this.toppings = toppings;
     }
 
+
+    @Override
+    public void setOrderID(int orderID) {
+
+    }
+
     @Override
     public double calculatePrice() {
         double basePrice = calculateBasePrice();
