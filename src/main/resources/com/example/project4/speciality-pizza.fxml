@@ -40,19 +40,6 @@
                         <Insets bottom="80.0" left="20.0" right="50.0" />
                     </GridPane.margin>
                 </ComboBox>
-                <VBox alignment="CENTER" prefHeight="109.0" prefWidth="215.0" spacing="5.0" GridPane.rowIndex="1">
-                    <children>
-                        <Label text="Sauce Selection">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                        <HBox spacing="10.0">
-                            <RadioButton fx:id="tomatoSauce" onAction="#updateCost" mnemonicParsing="false" text="Tomato Sauce" toggleGroup="#sauceGroup" />
-                            <RadioButton fx:id="alfredoSauce" onAction="#updateCost" mnemonicParsing="false" text="Alfredo Sauce" toggleGroup="#sauceGroup" />
-                        </HBox>
-                    </children>
-                </VBox>
                 <CheckBox fx:id="extraSauce" onAction="#updateCost" mnemonicParsing="false" prefHeight="41.0" prefWidth="110.0" text="Extra Sauce" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <padding>
                         <Insets right="10.0" />
