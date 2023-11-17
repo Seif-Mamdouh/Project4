@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.SpecialityPizzaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.BuildYourOwnPizzaController">
     <top>
-        <Label text="Our Speciality Pizza" BorderPane.alignment="CENTER">
+        <Label text="Build Your Own Pizza" BorderPane.alignment="CENTER">
             <font>
                 <Font size="32.0" />
             </font>
@@ -22,38 +22,21 @@
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.0" minWidth="10.0" prefWidth="309.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="180.0" />
-            <ColumnConstraints maxWidth="297.0" minWidth="63.0" prefWidth="113.0" />
+                <ColumnConstraints maxWidth="297.0" minWidth="63.0" prefWidth="113.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <ComboBox fx:id="pizzaTypeComboBox" prefHeight="40.0" prefWidth="184.0"  visibleRowCount="3" GridPane.halignment="CENTER">
-                    <GridPane.margin>
-                        <Insets left="40.0" />
-                    </GridPane.margin>
-                </ComboBox>
                 <ComboBox fx:id="sizeTypeComboBox" layoutX="10.0" prefHeight="26.0" prefWidth="91.0" visibleRowCount="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                     <GridPane.margin>
                         <Insets bottom="80.0" left="20.0" right="50.0" />
                     </GridPane.margin>
                 </ComboBox>
-                <VBox alignment="CENTER" prefHeight="109.0" prefWidth="215.0" spacing="5.0" GridPane.rowIndex="1">
-                    <children>
-                        <Label text="Sauce Selection">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                        <HBox spacing="10.0">
-                            <RadioButton fx:id="tomatoSauce" onAction="#updateCost" mnemonicParsing="false" text="Tomato Sauce" toggleGroup="#sauceGroup" />
-                            <RadioButton fx:id="alfredoSauce" onAction="#updateCost" mnemonicParsing="false" text="Alfredo Sauce" toggleGroup="#sauceGroup" />
-                        </HBox>
-                    </children>
-                </VBox>
-                <CheckBox fx:id="extraSauce" onAction="#updateCost" mnemonicParsing="false" prefHeight="41.0" prefWidth="110.0" text="Extra Sauce" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <CheckBox fx:id="sauceSelection" onAction="#updateCost" mnemonicParsing="false" prefHeight="41.0" prefWidth="110.0" text="Select Sauce" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <padding>
                         <Insets right="10.0" />
                     </padding>
@@ -61,13 +44,17 @@
                         <Insets left="80.0" />
                     </GridPane.margin>
                 </CheckBox>
-                <CheckBox fx:id="extraCheese" onAction="#updateCost" mnemonicParsing="false" prefHeight="82.0" prefWidth="109.0" text="Extra Cheese" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <CheckBox fx:id="extraSauce" onAction="#updateCost" mnemonicParsing="false" prefHeight="41.0" prefWidth="110.0" text="Extra Sauce" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <padding>
                         <Insets right="10.0" />
                     </padding>
                 </CheckBox>
-                <ImageView fx:id="pizzaView" fitHeight="109.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="2">
+                <CheckBox fx:id="extraCheese" onAction="#updateCost" mnemonicParsing="false" prefHeight="82.0" prefWidth="109.0" text="Extra Cheese" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                    <padding>
+                        <Insets right="10.0" />
+                    </padding>
+                </CheckBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.rowIndex="3">
                     <children>
                         <Label text="Sub -Total">
                             <font>
@@ -81,18 +68,17 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <children>
                         <Button onAction="#onAddOrderClicked" alignment="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" text="Add to Order" />
                     </children>
                 </HBox>
-                <VBox alignment="CENTER" prefHeight="109.0" prefWidth="215.0" spacing="5.0" GridPane.rowIndex="1">
-                <children>
-                    <ListView fx:id="ingredientsListView" prefHeight="125.0" prefWidth="195.0">
-                            <Font size="8.0" />
-                    </ListView>
-                </children>
+                <VBox alignment="CENTER" prefHeight="109.0" prefWidth="215.0" spacing="5.0" GridPane.rowIndex="5">
+                    <children>
+                        <ListView fx:id="toppingsListView" prefHeight="125.0" prefWidth="195.0" />
+                    </children>
                 </VBox>
+                <ImageView fx:id="pizzaView" fitHeight="109.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             </children>
         </GridPane>
     </center>

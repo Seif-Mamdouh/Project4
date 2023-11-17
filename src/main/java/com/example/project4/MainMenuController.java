@@ -25,6 +25,24 @@ public class MainMenuController {
     private Button storeOrdersButton;
     @FXML
     private Button orderDonutsButton;
+    @FXML
+    private Button buildYourOwnPizzaButton;
+
+    /**
+     * Handles clicking Build Your Own Pizza button. Disables button until new window is closed.
+     */
+    @FXML
+    private void buildYourOwnPizzaButtonClicked(ActionEvent actionEvent) throws IOException {
+        buildYourOwnPizzaButton.setDisable(true);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("build-your-own-pizza.fxml"));
+        Scene scene = new Scene(loader.load());
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.setTitle("RUCafe - Build Your Own Pizza");
+        newStage.setResizable(false);
+        newStage.setOnCloseRequest(e -> buildYourOwnPizzaButton.setDisable(false));
+        newStage.show();
+    }
 
     /**
      * Handles clicking Specialty Order  button. Disables button until new window is closed.

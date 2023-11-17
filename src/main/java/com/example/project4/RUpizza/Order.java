@@ -18,7 +18,7 @@ public class Order {
         return pizzaOrder;
     }
 
-    public boolean addPizza(SpecialityPizza pizza) {
+    public boolean addPizza(Pizza pizza) {
         return pizzas.add(pizza);
     }
 

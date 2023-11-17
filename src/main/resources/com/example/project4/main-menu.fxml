@@ -53,6 +53,7 @@
                 <Button fx:id="currentOrderButton" mnemonicParsing="false" onAction="#currentOrderButtonClicked" text="Current Order" />
                 <Button fx:id="storeOrdersButton" mnemonicParsing="false" onAction="#storesOrdersButtonClicked" text="Store Orders" />
                 <Button fx:id="specialtyPizzaButton" mnemonicParsing="false" onAction="#pizzaButtonClicked" text="Order Specialty Pizza" />
+                <Button fx:id="buildYourOwnPizzaButton" mnemonicParsing="false" onAction="#buildYourOwnPizzaButtonClicked" text="Build Your Own Pizza" />
             </children>
         </HBox>
     </bottom>
