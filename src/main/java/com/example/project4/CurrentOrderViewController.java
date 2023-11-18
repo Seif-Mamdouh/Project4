@@ -80,7 +80,7 @@ public class CurrentOrderViewController {
     }
 
     private void placeOrder() {
-        if(orderView.getItems() == null) {
+        if(Order.getPizzaOrder().getPizzas().size() == 0) {
             showErrorAlert("Error", "Order empty.");
             return;
         }
@@ -89,6 +89,8 @@ public class CurrentOrderViewController {
             showSuccessAlert("Order placed", "The order has been placed and added to store orders.");
             Order.getPizzaOrder().resetOrder();
             updateListViewAndLabels(Order.getPizzaOrder());
+            placeOrderButton.setDisable(true);
+            removeItemButton.setDisable(true);
         } else {
             showErrorAlert("Error", "Failed to place order.");
         }
@@ -100,6 +102,11 @@ public class CurrentOrderViewController {
      * Displays an alert to inform the user about the removal.
      */
     private void removeSelectedPizza() {
+        if(Order.getPizzaOrder().getPizzas().size() == 0) {
+            showErrorAlert("Error", "Order empty.");
+            return;
+        }
+        
         int selectedPizzaId = pizzaIDComboBox.getValue();
 
         // Get the selected pizza from the order
