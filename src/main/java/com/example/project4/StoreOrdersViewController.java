@@ -1,9 +1,8 @@
 package com.example.project4;
 
-import com.example.project4.model.MenuItem;
-import com.example.project4.model.Order;
-import com.example.project4.model.StoreOrders;
+import com.example.project4.RUpizza.*;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,9 +25,9 @@ import java.io.IOException;
 public class StoreOrdersViewController {
 
     @FXML
-    private ListView<MenuItem> orderDetail;
+    private ListView<Object> orderDetail;
     @FXML
-    private ComboBox<Order> orderView;
+    private ComboBox<Integer> orderView;
     @FXML
     private Button removeItemButton;
     @FXML
@@ -46,10 +45,10 @@ public class StoreOrdersViewController {
 
         if (!orderView.getItems().isEmpty())
         {
-            Order mI = orderView.getSelectionModel().getSelectedItem();
+            Order mI = StoreOrders.getInstance().getMapping().get(orderView.getSelectionModel().getSelectedItem());
             orderDetail.getItems().removeAll(orderDetail.getItems());
-            orderDetail.setItems(mI.getOrderItems());
-            currentOrderTotalLabel.setText(String.format("$%.2f", mI.calculateTotal()));
+            orderDetail.setItems(mI.getPizzas());
+            currentOrderTotalLabel.setText(String.format("$%.2f", StoreOrders.getInstance().calculateTotal(mI)));
         }
 
         if (orderView.getSelectionModel().getSelectedItem() == null) removeItemButton.setDisable(true);
@@ -58,8 +57,8 @@ public class StoreOrdersViewController {
             removeItemButton.setDisable(curr == null);
             if(curr != null)
             {
-                orderDetail.setItems(curr.getOrderItems());
-                currentOrderTotalLabel.setText(String.format("$%.2f", curr.calculateTotal()));
+                orderDetail.setItems(StoreOrders.getInstance().getMapping().get(curr).getPizzas());
+                currentOrderTotalLabel.setText(String.format("$%.2f", StoreOrders.getInstance().calculateTotal(StoreOrders.getInstance().getMapping().get(curr))));
             }
             else {
                 currentOrderTotalLabel.setText("$0.00");
@@ -103,5 +102,4 @@ public class StoreOrdersViewController {
     }
 
 }
-
 

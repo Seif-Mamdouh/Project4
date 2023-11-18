@@ -6,6 +6,7 @@ import com.example.project4.RUpizza.Order;
 import com.example.project4.RUpizza.Pizza;
 import com.example.project4.RUpizza.Size;
 import com.example.project4.RUpizza.SpecialityPizza;
+import com.example.project4.RUpizza.StoreOrders;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -74,9 +75,25 @@ public class CurrentOrderViewController {
         updateListViewAndLabels(pizzaOrder);
 
         removeItemButton.setOnAction(event -> removeSelectedPizza());
+        placeOrderButton.setOnAction(event -> placeOrder());
 
     }
 
+    private void placeOrder() {
+        if(orderView.getItems() == null) {
+            showErrorAlert("Error", "Order empty.");
+            return;
+        }
+        
+        if (StoreOrders.getInstance().add(Order.getPizzaOrder())) {
+            showSuccessAlert("Order placed", "The order has been placed and added to store orders.");
+            Order.getPizzaOrder().resetOrder();
+            updateListViewAndLabels(Order.getPizzaOrder());
+        } else {
+            showErrorAlert("Error", "Failed to place order.");
+        }
+
+    }
 
     /**
      * Removes the selected pizza from the current order and updates the view.
@@ -197,6 +214,34 @@ public class CurrentOrderViewController {
         orderView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         updateLabels(pizzaOrder.getPizzas());
+    }
+
+    /**
+     * Displays a success alert with the given title and content text.
+     *
+     * @param title       The title of the success alert.
+     * @param contentText The content text of the success alert.
+     */
+    private void showSuccessAlert(String title, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
+    /**
+     * Displays an error alert with the given title and content text.
+     *
+     * @param title       The title of the error alert.
+     * @param contentText The content text of the error alert.
+     */
+    private void showErrorAlert(String title, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 
 };

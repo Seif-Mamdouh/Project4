@@ -1,2 +1,40 @@
-Order 0 Total: $23.40
-	5@$4.39 ea. - Venti Coffee with Cream, Whipped Cream, Syrup, Milk, Caramel, 
+com.example.project4.RUpizza.Order@75af6752
+	3
+Build Your Own Pizza
+Size: Large
+Extra Cheese: yes
+Extra Sauce: yes
+Toppings: Pepperoni, Green peppers, Black olives, Onions, Alfredo sauce
+Total Price: $16.48
+Tax: $1.0918
+Total: $17.5718
+
+	4
+Pizza Type: MEATZZA
+Size: Small
+Extra Cheese: no
+Extra Sauce: no
+Total Price: $16.99
+Tax: $1.1255875
+Total: $18.115587499999997
+
+com.example.project4.RUpizza.Order@5e7a9034
+	5
+Build Your Own Pizza
+Size: Small
+Extra Cheese: no
+Extra Sauce: no
+Toppings: Mushrooms, Onions, Pepperoni, Black olives, Alfredo sauce
+Total Price: $10.48
+Tax: $0.6943
+Total: $11.1743
+
+	6
+Pizza Type: PEPPERONI
+Size: Small
+Extra Cheese: no
+Extra Sauce: no
+Total Price: $10.99
+Tax: $0.7280875
+Total: $11.7180875
+
