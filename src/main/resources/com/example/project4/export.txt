@@ -1,2 +1,10 @@
-Order 0 Total: $23.40
-	5@$4.39 ea. - Venti Coffee with Cream, Whipped Cream, Syrup, Milk, Caramel, 
+com.example.project4.RUpizza.Order@5b870d78
+	1
+Pizza Type: DELUXE
+Size: Small
+Extra Cheese: no
+Extra Sauce: no
+Total Price: $14.99
+Tax: $0.9930875
+Total: $15.9830875
+

@@ -35,6 +35,13 @@ public class Order {
     }
 
     /**
+     * Resets the currentOrder instance to a fresh order.
+     */
+    public void resetOrder() {
+        pizzaOrder = new Order();
+    }
+
+    /**
      * Adds a pizza to the order.
      * If the added pizza is a speciality pizza, sets its order ID.
      *
