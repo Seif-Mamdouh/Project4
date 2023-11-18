@@ -45,6 +45,9 @@ public class Order {
         if (pizza instanceof SpecialityPizza) {
             ((SpecialityPizza) pizza).setOrderID(orderIDCounter++);
         }
+        if (pizza instanceof BuildYourOwnPizza) {
+            ((BuildYourOwnPizza) pizza).setOrderID(orderIDCounter++);
+        }
         return pizzas.add(pizza);
     }
 

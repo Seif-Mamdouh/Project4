@@ -1,7 +1,7 @@
 package com.example.project4;
 
 import com.example.project4.StoreOrdersViewController;
-
+import com.example.project4.RUpizza.BuildYourOwnPizza;
 import com.example.project4.RUpizza.Order;
 import com.example.project4.RUpizza.Pizza;
 import com.example.project4.RUpizza.Size;
@@ -86,10 +86,17 @@ public class CurrentOrderViewController {
         int selectedPizzaId = pizzaIDComboBox.getValue();
 
         // Get the selected pizza from the order
-        SpecialityPizza selectedPizza = null;
+        Pizza selectedPizza = null;
         for (Object pizzaObject : Order.getPizzaOrder().getPizzas()) {
             if (pizzaObject instanceof SpecialityPizza) {
                 SpecialityPizza pizza = (SpecialityPizza) pizzaObject;
+                if (pizza.getPizzaID() == selectedPizzaId) {
+                    selectedPizza = pizza;
+                    break;
+                }
+            }
+            if (pizzaObject instanceof BuildYourOwnPizza) {
+                BuildYourOwnPizza pizza = (BuildYourOwnPizza) pizzaObject;
                 if (pizza.getPizzaID() == selectedPizzaId) {
                     selectedPizza = pizza;
                     break;
@@ -115,6 +122,9 @@ public class CurrentOrderViewController {
             if (pizzaObject instanceof SpecialityPizza) {
                 pizzaIds.add(((SpecialityPizza) pizzaObject).getPizzaID());
             }
+            if (pizzaObject instanceof BuildYourOwnPizza) {
+                pizzaIds.add(((BuildYourOwnPizza) pizzaObject).getPizzaID());
+            }
         }
         return pizzaIds;
     }
@@ -132,6 +142,11 @@ public class CurrentOrderViewController {
         for (Object pizzaObject : pizzaOrder.getPizzas()) {
             if (pizzaObject instanceof SpecialityPizza) {
                 if (((SpecialityPizza) pizzaObject).getPizzaID().equals(selectedPizzaId)) {
+                    filteredPizzas.add(pizzaObject);
+                }
+            }
+            if (pizzaObject instanceof BuildYourOwnPizza) {
+                if (((BuildYourOwnPizza) pizzaObject).getPizzaID().equals(selectedPizzaId)) {
                     filteredPizzas.add(pizzaObject);
                 }
             }
@@ -155,6 +170,12 @@ public class CurrentOrderViewController {
         for (Object pizzaObject : pizzas) {
             if (pizzaObject instanceof SpecialityPizza) {
                 SpecialityPizza pizza = (SpecialityPizza) pizzaObject;
+                subtotal += pizza.calculatePrice();
+                salesTax += pizza.calculateTax();
+                total += pizza.total();
+            }
+            if (pizzaObject instanceof BuildYourOwnPizza) {
+                BuildYourOwnPizza pizza = (BuildYourOwnPizza) pizzaObject;
                 subtotal += pizza.calculatePrice();
                 salesTax += pizza.calculateTax();
                 total += pizza.total();
