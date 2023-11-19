@@ -18,13 +18,9 @@ public class MainMenuController {
     @FXML
     public Button specialtyPizzaButton;
     @FXML
-    private Button orderCoffeeButton;
-    @FXML
     private Button currentOrderButton;
     @FXML
     private Button storeOrdersButton;
-    @FXML
-    private Button orderDonutsButton;
     @FXML
     private Button buildYourOwnPizzaButton;
 
@@ -60,37 +56,6 @@ public class MainMenuController {
         newStage.show();
     }
 
-    /**
-     * Handles clicking order coffee button. Disables button until new window is closed.
-     */
-    @FXML
-    private void orderCoffeeButtonClicked(ActionEvent actionEvent) throws IOException {
-        orderCoffeeButton.setDisable(true);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("coffee-view.fxml"));
-        Scene scene = new Scene(loader.load());
-        Stage newStage = new Stage();
-        newStage.setScene(scene);
-        newStage.setTitle("RUCafe - Order Coffee");
-        newStage.setResizable(false);
-        newStage.setOnCloseRequest(e -> orderCoffeeButton.setDisable(false));
-        newStage.show();
-    }
-
-    /**
-     * Handles clicking order donuts button. Disables button until new window is closed.
-     */
-    @FXML
-    private void orderDonutsButtonClicked(ActionEvent actionEvent) throws IOException {
-        orderDonutsButton.setDisable(true);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("donuts-view.fxml"));
-        Scene scene = new Scene(loader.load());
-        Stage newStage = new Stage();
-        newStage.setScene(scene);
-        newStage.setTitle("RUCafe - Order Donuts");
-        newStage.setResizable(false);
-        newStage.setOnCloseRequest(e -> orderDonutsButton.setDisable(false));
-        newStage.show();
-    }
 
     /**
      * Handles clicking current orders button. Disables button until new window is closed.
