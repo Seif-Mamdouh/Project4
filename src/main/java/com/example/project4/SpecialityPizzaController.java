@@ -1,20 +1,13 @@
 package com.example.project4;
 
 import com.example.project4.RUpizza.*;
-
-
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-
-
 import javafx.collections.ObservableList;
 
 
@@ -54,60 +47,55 @@ public class SpecialityPizzaController {
      * and populates the view with default pizza information.
      */
     public void initialize() {
-        pizzaSubTotalLabel.setText("$14.99");
-
+        pizzaSubTotalLabel.setText("$00.00");
         ingredients = FXCollections.observableArrayList();
-
         pizzaTypeComboBox.getItems().removeAll(pizzaTypeComboBox.getItems());
         pizzaTypeComboBox.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
-        pizzaTypeComboBox.getSelectionModel().selectFirst();
-
+        pizzaTypeComboBox.getSelectionModel();
         sizeTypeComboBox.getItems().removeAll(sizeTypeComboBox.getItems());
         sizeTypeComboBox.getItems().addAll(Size.values());
         sizeTypeComboBox.getSelectionModel().selectFirst();
-
         extraSauce.setOnAction(event -> updateCost());
         extraCheese.setOnAction(event -> updateCost());
-
-
         changePicture("src/main/resources/com/example/project4/images/deluxe.jpeg");
         ingredientsListView.setItems(ingredients);
-
         sizeTypeComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldSize, newSize) -> {
             updateCost();
         });
-
         pizzaTypeComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldType, newType) -> {
-            switch (newType) {
-                case "Deluxe" -> {
-                    changePicture("src/main/resources/com/example/project4/images/deluxe.jpeg");
-                    ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
-                    updateCost();
-                }
-                case "Supreme" -> {
-                    changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
-                    ingredients.setAll("Tomato Sauce",  "Sausage", "Pepperoni", "Green Pepper");
-                    updateCost();
-                }
-                case "Meatzza" -> {
-                    changePicture("src/main/resources/com/example/project4/images/meattza.jpeg");
-                    ingredients.setAll("Tomato Sauce", "Meats");
-                    updateCost();
-                }
-                case "Seafood" -> {
-                    changePicture("src/main/resources/com/example/project4/images/seaFood.jpg");
-                    ingredients.setAll("Alferado Sauce", "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
-                    updateCost();
-                }
-                case "Pepperoni" -> {
-                    changePicture("src/main/resources/com/example/project4/images/pepperoni-pizza.jpeg");
-                    ingredients.setAll("Pepperoni", "Tomato Sauce");
-                    updateCost();
-                }
-            }
+            updatePizzaType(newType);
         });
+    }
 
 
+    private void updatePizzaType(String newType) {
+        switch (newType) {
+            case "Deluxe" -> {
+                changePicture("src/main/resources/com/example/project4/images/deluxe.jpeg");
+                ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
+                updateCost();
+            }
+            case "Supreme" -> {
+                changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
+                ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper");
+                updateCost();
+            }
+            case "Meatzza" -> {
+                changePicture("src/main/resources/com/example/project4/images/meattza.jpeg");
+                ingredients.setAll("Tomato Sauce", "Meats");
+                updateCost();
+            }
+            case "Seafood" -> {
+                changePicture("src/main/resources/com/example/project4/images/seaFood.jpg");
+                ingredients.setAll("Alferado Sauce", "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
+                updateCost();
+            }
+            case "Pepperoni" -> {
+                changePicture("src/main/resources/com/example/project4/images/pepperoni-pizza.jpeg");
+                ingredients.setAll("Pepperoni", "Tomato Sauce");
+                updateCost();
+            }
+        }
     }
 
     /**
@@ -152,6 +140,12 @@ public class SpecialityPizzaController {
      */
     @FXML
     private void onAddOrderClicked() {
+
+        if (pizzaTypeComboBox.getSelectionModel().isEmpty()) {
+            showErrorAlert("Error", "Please select a pizza type before adding to the order.");
+            return;
+        }
+
         // Parse the values
         String selectedPizzaType = pizzaTypeComboBox.getValue().toUpperCase();
         Size selectedSize = sizeTypeComboBox.getValue();
