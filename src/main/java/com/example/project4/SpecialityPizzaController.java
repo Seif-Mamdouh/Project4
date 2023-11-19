@@ -101,8 +101,7 @@ public class SpecialityPizzaController {
     /**
      * Updates the image being displayed on the page
      */
-    private void changePicture(String name)
-    {
+    private void changePicture(String name) {
         FileInputStream path = null;
         try {
             path = new FileInputStream( name);
@@ -146,12 +145,18 @@ public class SpecialityPizzaController {
             return;
         }
 
+
         // Parse the values
         String selectedPizzaType = pizzaTypeComboBox.getValue().toUpperCase();
         Size selectedSize = sizeTypeComboBox.getValue();
         boolean isExtraSauce = extraSauce.isSelected();
         boolean isExtraCheese = extraCheese.isSelected();
 
+        // Check if either extraSauce or extraCheese is selected without selecting a pizza type
+        if ((isExtraSauce || isExtraCheese) && pizzaTypeComboBox.getSelectionModel().isEmpty()) {
+            showErrorAlert("Error", "Please select a pizza type before adding extra sauce or extra cheese.");
+            return;
+        }
 
         Pizza specialityPizza = PizzaMaker.createPizza(Pizza.PizzaType.valueOf(selectedPizzaType), selectedSize, isExtraSauce, isExtraCheese);
 
@@ -207,6 +212,9 @@ public class SpecialityPizzaController {
      * @return The total cost of the pizza.
      */
     private double calculateCost(String pizzaType, Size size) {
+        if (pizzaType == null || size == null) {
+            return 0.0;
+        }
         double basePrice = getBasePrice(pizzaType, size);
         return basePrice;
     }

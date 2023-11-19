@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Class used to run the RUCafe Application.
+ * Class used to run the RU Application.
  *
  * @author
  */
