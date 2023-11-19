@@ -43,8 +43,7 @@ public class StoreOrdersViewController {
         orderView.setItems(StoreOrders.getInstance().getOrders());
         orderView.getSelectionModel().selectFirst();
 
-        if (!orderView.getItems().isEmpty())
-        {
+        if (!orderView.getItems().isEmpty()) {
             Order mI = StoreOrders.getInstance().getMapping().get(orderView.getSelectionModel().getSelectedItem());
             orderDetail.getItems().removeAll(orderDetail.getItems());
             orderDetail.setItems(mI.getPizzas());
@@ -52,6 +51,8 @@ public class StoreOrdersViewController {
         }
 
         if (orderView.getSelectionModel().getSelectedItem() == null) removeItemButton.setDisable(true);
+        if (orderView.getSelectionModel().getSelectedItem() == null) exportOrdersButton.setDisable(true);
+        exportOrdersButton.setOnAction(this::exportButtonClicked);
 
         orderView.getSelectionModel().selectedItemProperty().addListener((obs, prev, curr) -> {
             removeItemButton.setDisable(curr == null);
@@ -94,11 +95,20 @@ public class StoreOrdersViewController {
         }
         file.setWritable(true);
         StoreOrders.getInstance().exportTo(file);
-
+        clearUI();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Orders Exported");
         alert.setHeaderText("You've exported the orders to the resources folder.");
         alert.showAndWait();
+    }
+
+    /**
+     * Clears the UI components when needed.
+     */
+    private void clearUI() {
+        orderDetail.getItems().clear();
+        orderView.getItems().clear();
+        currentOrderTotalLabel.setText("$0.00");
     }
 
 }
