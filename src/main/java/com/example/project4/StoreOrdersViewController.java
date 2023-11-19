@@ -87,6 +87,12 @@ public class StoreOrdersViewController {
      */
     @FXML
     private void exportButtonClicked(ActionEvent actionEvent) {
+        Alert alert;
+        if(orderView.getSelectionModel().isEmpty()) { //This line doesn't work
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("The store order is empty.");
+        }
         File file = new File("src/main/resources/com/example/project4/export.txt");
         try {
             file.createNewFile();
@@ -96,9 +102,11 @@ public class StoreOrdersViewController {
         file.setWritable(true);
         StoreOrders.getInstance().exportTo(file);
         clearUI();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Orders Exported");
-        alert.setHeaderText("You've exported the orders to the resources folder.");
+        alert.setHeaderText("You've exported the orders to 'src/main/resources/com/example/project4/export.txt'.");
         alert.showAndWait();
     }
 
