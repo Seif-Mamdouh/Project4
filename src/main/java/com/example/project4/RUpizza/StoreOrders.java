@@ -13,7 +13,7 @@ public class StoreOrders {
      * Field for all the store orders.
      */
     private final static StoreOrders instance = new StoreOrders();
-    private static int orderIDCounter = 1;
+    private static int orderIDCounter = 0;
 
     /**
      * Method to get instance of store orders.

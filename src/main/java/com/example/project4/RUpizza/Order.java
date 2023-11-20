@@ -17,7 +17,7 @@ public class Order {
     private ObservableList<Object> pizzas;
     private static int orderIDCounter = 1;
 
-    private static int nextStoreID = 2;
+    private static int nextStoreID = 1;
 
     private int storeID;
 
