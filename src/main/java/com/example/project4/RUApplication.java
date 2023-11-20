@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Class used to run the RU Application.
  *
- * @author
+ * @author Seifeldeen Mohamed
  */
 public class RUApplication extends Application {
 

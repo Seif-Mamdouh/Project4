@@ -22,6 +22,7 @@ import java.util.List;
  * Controller class for handling interactions with the current order view window.
  * Manages the display and manipulation of the current order, including adding and removing items.
  * This class is responsible for initializing the view components and handling user actions.
+ *
  * @author Seifeldeen Mohamed
  */
 public class CurrentOrderViewController {

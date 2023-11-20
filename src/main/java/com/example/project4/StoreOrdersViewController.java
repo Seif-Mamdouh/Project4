@@ -88,36 +88,51 @@ public class StoreOrdersViewController {
     @FXML
     private void exportButtonClicked(ActionEvent actionEvent) {
         Alert alert;
-        if(orderView.getSelectionModel().isEmpty()) { //This line doesn't work
+        if (StoreOrders.getInstance().getOrders().isEmpty()) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("The store order is empty.");
-        }
-        File file = new File("src/main/resources/com/example/project4/export.txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        file.setWritable(true);
-        StoreOrders.getInstance().exportTo(file);
-        clearUI();
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        } else {
+            File file = new File("src/main/resources/com/example/project4/export.txt");
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            file.setWritable(true);
+            StoreOrders.getInstance().exportTo(file);
 
-        alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Orders Exported");
-        alert.setHeaderText("You've exported the orders to 'src/main/resources/com/example/project4/export.txt'.");
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Orders Exported");
+            alert.setHeaderText("You've exported the orders to 'src/main/resources/com/example/project4/export.txt'.");
+        }
         alert.showAndWait();
     }
 
-    /**
-     * Clears the UI components when needed.
-     */
-    private void clearUI() {
-        orderDetail.getItems().clear();
-        orderView.getItems().clear();
-        currentOrderTotalLabel.setText("$0.00");
-    }
+//    @FXML
+//    private void exportButtonClicked(ActionEvent actionEvent) {
+//        Alert alert;
+//        if (StoreOrders.getInstance().getOrders().isEmpty()) {
+//            alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Error");
+//            alert.setHeaderText("The store order is empty.");
+//        } else {
+//            File file = new File("src/main/resources/com/example/project4/export.txt");
+//            try {
+//                file.createNewFile();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            file.setWritable(true);
+//            StoreOrders.getInstance().exportTo(file);
+//
+//            alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Orders Exported");
+//            alert.setHeaderText("You've exported the orders to 'src/main/resources/com/example/project4/export.txt'.");
+//        }
+//        alert.showAndWait();
+//    }
+
 
 }
 

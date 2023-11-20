@@ -6,16 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="1146ccde-975e-4ce2-adef-d7c48aaafcb0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/CoffeeViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/c.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/DonutsViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/cake-donut.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/coffee-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/coffee.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/donuts-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/donuts.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/hole-donut.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/order-coffee.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/project4/yeast-donut.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/CurrentOrderViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/CurrentOrderViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/RUApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/RUApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/StoreOrdersViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/project4/StoreOrdersViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/AddIn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/CakeDonut.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/Coffee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/Customizable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/Donut.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/DonutHole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/Flavor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/MenuItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/Size.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/StoreOrders.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/project4/model/YeastDonut.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
