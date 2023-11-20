@@ -17,6 +17,10 @@ public class Order {
     private ObservableList<Object> pizzas;
     private static int orderIDCounter = 1;
 
+    private static int nextStoreID = 2;
+
+    private int storeID;
+
 
     /**
      * Private constructor to enforce singleton pattern.
@@ -24,6 +28,7 @@ public class Order {
      */
     private Order() {
         this.pizzas = FXCollections.observableArrayList();
+        this.storeID = nextStoreID++;
     }
     /**
      * Retrieves the singleton instance of the Order.
@@ -67,6 +72,8 @@ public class Order {
         return pizzas;
     }
 
-
+    public int getStoreID() {
+        return storeID;
+    }
 
 }

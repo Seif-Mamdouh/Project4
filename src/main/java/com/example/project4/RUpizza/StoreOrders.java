@@ -85,7 +85,7 @@ public class StoreOrders {
             {
 
                 try {
-                    String toWrite = order.toString() + "\n";
+                    String toWrite = "Store ID: " + order.getStoreID() + "\n";
                     exporter.write(toWrite);
                 } catch (IOException e) {
                     e.printStackTrace();

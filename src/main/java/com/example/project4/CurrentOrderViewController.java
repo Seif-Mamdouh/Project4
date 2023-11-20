@@ -86,6 +86,7 @@ public class CurrentOrderViewController {
             updateListViewAndLabels(Order.getPizzaOrder());
             placeOrderButton.setDisable(true);
             removeItemButton.setDisable(true);
+            updateComboBox();
         } else {
             showErrorAlert("Error", "Failed to place order.");
         }
@@ -99,6 +100,11 @@ public class CurrentOrderViewController {
     private void removeSelectedPizza() {
         if (Order.getPizzaOrder().getPizzas().isEmpty()) {
             showErrorAlert("Error", "Order empty.");
+            return;
+        }
+
+        if(pizzaIDComboBox.getValue() == null){
+            showErrorAlert("Error", "Select PizzaID");
             return;
         }
 

@@ -109,30 +109,5 @@ public class StoreOrdersViewController {
         alert.showAndWait();
     }
 
-//    @FXML
-//    private void exportButtonClicked(ActionEvent actionEvent) {
-//        Alert alert;
-//        if (StoreOrders.getInstance().getOrders().isEmpty()) {
-//            alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("Error");
-//            alert.setHeaderText("The store order is empty.");
-//        } else {
-//            File file = new File("src/main/resources/com/example/project4/export.txt");
-//            try {
-//                file.createNewFile();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            file.setWritable(true);
-//            StoreOrders.getInstance().exportTo(file);
-//
-//            alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Orders Exported");
-//            alert.setHeaderText("You've exported the orders to 'src/main/resources/com/example/project4/export.txt'.");
-//        }
-//        alert.showAndWait();
-//    }
-
-
 }
 
