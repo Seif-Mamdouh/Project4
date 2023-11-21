@@ -43,8 +43,7 @@ public class StoreOrdersViewController {
         orderView.setItems(StoreOrders.getInstance().getOrders());
         orderView.getSelectionModel().selectFirst();
 
-        if (!orderView.getItems().isEmpty())
-        {
+        if (!orderView.getItems().isEmpty()) {
             Order mI = StoreOrders.getInstance().getMapping().get(orderView.getSelectionModel().getSelectedItem());
             orderDetail.getItems().removeAll(orderDetail.getItems());
             orderDetail.setItems(mI.getPizzas());
@@ -52,6 +51,8 @@ public class StoreOrdersViewController {
         }
 
         if (orderView.getSelectionModel().getSelectedItem() == null) removeItemButton.setDisable(true);
+        if (orderView.getSelectionModel().getSelectedItem() == null) exportOrdersButton.setDisable(true);
+        exportOrdersButton.setOnAction(this::exportButtonClicked);
 
         orderView.getSelectionModel().selectedItemProperty().addListener((obs, prev, curr) -> {
             removeItemButton.setDisable(curr == null);
@@ -87,23 +88,24 @@ public class StoreOrdersViewController {
     @FXML
     private void exportButtonClicked(ActionEvent actionEvent) {
         Alert alert;
-        if(orderView.getSelectionModel().isEmpty()) { //This line doesn't work
+        if (StoreOrders.getInstance().getOrders().isEmpty()) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("The store order is empty.");
-        }
-        File file = new File("src/main/resources/com/example/project4/export.txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        file.setWritable(true);
-        StoreOrders.getInstance().exportTo(file);
+        } else {
+            File file = new File("src/main/resources/com/example/project4/export.txt");
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            file.setWritable(true);
+            StoreOrders.getInstance().exportTo(file);
 
-        alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Orders Exported");
-        alert.setHeaderText("You've exported the orders to 'src/main/resources/com/example/project4/export.txt'.");
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Orders Exported");
+            alert.setHeaderText("You've exported the orders to 'src/main/resources/com/example/project4/export.txt'.");
+        }
         alert.showAndWait();
     }
 

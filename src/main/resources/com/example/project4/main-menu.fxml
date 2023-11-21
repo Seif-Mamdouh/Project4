@@ -11,7 +11,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.MainMenuController">
     <top>
-        <Label text="RUCafe" BorderPane.alignment="CENTER">
+        <Label text="RUPizza" BorderPane.alignment="CENTER">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
@@ -27,24 +27,7 @@
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0" BorderPane.alignment="CENTER">
             <children>
                 <Button fx:id="specialtyPizzaButton" mnemonicParsing="false" onAction="#pizzaButtonClicked" text="Order Specialty Pizza" />
-<!--                <Button fx:id="orderCoffeeButton" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#orderCoffeeButtonClicked" text="Order Coffee">-->
-<!--                    <graphic>-->
-<!--                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">-->
-<!--                            <image>-->
-<!--                                <Image url="@coffee.jpeg" />-->
-<!--                            </image>-->
-<!--                        </ImageView>-->
-<!--                    </graphic>-->
-<!--                </Button>-->
-                <Button fx:id="orderDonutsButton" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#orderDonutsButtonClicked" text="Order Donuts">
-                    <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@donuts.jpeg" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
+                <Button fx:id="buildYourOwnPizzaButton" mnemonicParsing="false" onAction="#buildYourOwnPizzaButtonClicked" text="Build Your Own Pizza" />
             </children>
         </HBox>
     </center>
@@ -53,8 +36,6 @@
             <children>
                 <Button fx:id="currentOrderButton" mnemonicParsing="false" onAction="#currentOrderButtonClicked" text="Current Order" />
                 <Button fx:id="storeOrdersButton" mnemonicParsing="false" onAction="#storesOrdersButtonClicked" text="Store Orders" />
-
-                <Button fx:id="buildYourOwnPizzaButton" mnemonicParsing="false" onAction="#buildYourOwnPizzaButtonClicked" text="Build Your Own Pizza" />
             </children>
         </HBox>
     </bottom>

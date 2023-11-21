@@ -1,24 +1,18 @@
 package com.example.project4;
 
-import com.example.project4.StoreOrdersViewController;
+
 import com.example.project4.RUpizza.BuildYourOwnPizza;
 import com.example.project4.RUpizza.Order;
 import com.example.project4.RUpizza.Pizza;
-import com.example.project4.RUpizza.Size;
 import com.example.project4.RUpizza.SpecialityPizza;
 import com.example.project4.RUpizza.StoreOrders;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.Parent;
-import javafx.stage.Stage;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +22,7 @@ import java.util.List;
  * Controller class for handling interactions with the current order view window.
  * Manages the display and manipulation of the current order, including adding and removing items.
  * This class is responsible for initializing the view components and handling user actions.
+ *
  * @author Seifeldeen Mohamed
  */
 public class CurrentOrderViewController {
@@ -80,7 +75,7 @@ public class CurrentOrderViewController {
     }
 
     private void placeOrder() {
-        if(Order.getPizzaOrder().getPizzas().size() == 0) {
+        if(Order.getPizzaOrder().getPizzas().isEmpty()) {
             showErrorAlert("Error", "Order empty.");
             return;
         }
@@ -91,6 +86,7 @@ public class CurrentOrderViewController {
             updateListViewAndLabels(Order.getPizzaOrder());
             placeOrderButton.setDisable(true);
             removeItemButton.setDisable(true);
+            updateComboBox();
         } else {
             showErrorAlert("Error", "Failed to place order.");
         }
@@ -102,11 +98,16 @@ public class CurrentOrderViewController {
      * Displays an alert to inform the user about the removal.
      */
     private void removeSelectedPizza() {
-        if(Order.getPizzaOrder().getPizzas().size() == 0) {
+        if (Order.getPizzaOrder().getPizzas().isEmpty()) {
             showErrorAlert("Error", "Order empty.");
             return;
         }
-        
+
+        if(pizzaIDComboBox.getValue() == null){
+            showErrorAlert("Error", "Select PizzaID");
+            return;
+        }
+
         int selectedPizzaId = pizzaIDComboBox.getValue();
 
         // Get the selected pizza from the order
@@ -132,12 +133,18 @@ public class CurrentOrderViewController {
         if (selectedPizza != null) {
             Order.getPizzaOrder().getPizzas().remove(selectedPizza);
             updateListViewAndLabels(Order.getPizzaOrder());
-
+            updateComboBox();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Order Removed");
             alert.setHeaderText("You've removed an item from your order.");
             alert.showAndWait();
         }
+    }
+
+    private void updateComboBox() {
+        pizzaIDComboBox.getItems().clear();
+        pizzaIDComboBox.getItems().addAll(getPizzaIds(Order.getPizzaOrder()));
+        pizzaIDComboBox.getSelectionModel().selectFirst();
     }
 
     private List<Integer> getPizzaIds(Order pizzaOrder) {

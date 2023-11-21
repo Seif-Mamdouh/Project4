@@ -8,18 +8,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Class used to run the RUCafe Application.
+ * Class used to run the RU Application.
  *
- * @author
+ * @author Seifeldeen Mohamed
  */
-public class RUCafeApplication extends Application {
+public class RUApplication extends Application {
 
     /**
      * Overriding start method from Application class.
      */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(RUCafeApplication.class.getResource("main-menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(RUApplication.class.getResource("main-menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 602, 443);
         stage.setTitle("RUPizza - Main Menu");
         stage.setScene(scene);

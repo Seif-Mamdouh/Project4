@@ -129,7 +129,7 @@ public class SpecialityPizza extends Pizza {
     @Override
     public String toString() {
         StringBuilder pizzaDetails = new StringBuilder();
-        pizzaDetails.append(orderID).append("\n");
+        pizzaDetails.append("Order ID: ").append(orderID).append("\n");
         pizzaDetails.append("Pizza Type: ").append(pizzaType).append("\n");
         pizzaDetails.append("Size: ").append(size).append("\n");
 
