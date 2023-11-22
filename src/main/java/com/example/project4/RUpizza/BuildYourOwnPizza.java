@@ -106,7 +106,7 @@ public class BuildYourOwnPizza extends Pizza {
     @Override
     public String toString() {
         StringBuilder pizzaDetails = new StringBuilder();
-        pizzaDetails.append(orderID).append("\n");
+        pizzaDetails.append("OrderID: ").append(orderID).append("\n");
         pizzaDetails.append("Build Your Own Pizza").append("\n");
         pizzaDetails.append("Size: ").append(size).append("\n");
         if (extraCheese) {
