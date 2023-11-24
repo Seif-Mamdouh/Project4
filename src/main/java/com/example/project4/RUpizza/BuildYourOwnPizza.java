@@ -57,6 +57,12 @@ public class BuildYourOwnPizza extends Pizza {
         return calculatePrice() * TAX_RATE;
     }
 
+    /**
+     * Calculates the price without tax for the order.
+     * The toppings include an extra item (sauce) which is not actually part of the toppings.
+     * We add it to our "toppings" array for our specific implementation.
+     * @return
+     */
     @Override
     public double calculatePrice() {
         double basePrice = calculateBasePrice();
