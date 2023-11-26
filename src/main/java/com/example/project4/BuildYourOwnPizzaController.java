@@ -33,9 +33,23 @@ public class BuildYourOwnPizzaController {
     @FXML
     private ImageView pizzaView;
 
+
+    private static final double EXTRA_TOPPING_COST = 1.0;
+    private static final int MAX = 7;
+    private static final int MIN = 3;
+
+    private static final double SMALL = 8.99;
+    private static final double TWO = 2.00;
+    private static final double FOUR = 4.00;
+    private static final double DEFAULT = 0.00;
+
+    private static final double TOPPINGS_PRICE = 1.49;
+
     private ObservableList<String> toppings;
     private ObservableList<String> selectedToppings;
-
+    /**
+     * Initializes the Build Your Own Pizza controller.
+     */
     public void initialize() {
         pizzaSubTotalLabel.setText("$0.00");
 
@@ -74,25 +88,32 @@ public class BuildYourOwnPizzaController {
         }
     }
 
+
+    /**
+     * Updates the total cost of the pizza.
+     */
     @FXML
-private void updateCost() {
-    double totalCost = calculateCost();
+    private void updateCost() {
+        double totalCost = calculateCost();
 
-    if (extraSauce.isSelected()) {
-        totalCost += 1.0;
+        if (extraSauce.isSelected()) {
+            totalCost += EXTRA_TOPPING_COST;
+        }
+        if (extraCheese.isSelected()) {
+            totalCost += EXTRA_TOPPING_COST;
+        }
+
+        pizzaSubTotalLabel.setText(String.format("$%.2f", totalCost));
     }
-    if (extraCheese.isSelected()) {
-        totalCost += 1.0;
-    }
 
-    pizzaSubTotalLabel.setText(String.format("$%.2f", totalCost));
-}
-
+    /**
+     * Handles the "Add to Order" button click event.
+     */
     @FXML
     private void onAddOrderClicked() {
         // Check if the number of toppings in the right box is between 3 and 7
         int selectedToppingsCount = selectedToppingsListView.getItems().size();
-        if (selectedToppingsCount < 3) {
+        if (selectedToppingsCount < MIN) {
             showErrorAlert("Error", "Select at least 3 toppings.");
             return;
         }
@@ -132,7 +153,9 @@ private void updateCost() {
         resetUI();
     }
 
-
+    /**
+     * Resets the user interface to its initial state.
+     */
     private void resetUI() {
         extraSauce.setSelected(false);
         extraCheese.setSelected(false);
@@ -145,12 +168,15 @@ private void updateCost() {
         pizzaSubTotalLabel.setText("$0.00");
     }
 
+    /**
+     * Handles the "Add Topping" button click event.
+     */
     @FXML
     private void onAddToppingClicked() {
         String selectedTopping = toppingsListView.getSelectionModel().getSelectedItem();
         // Check if the number of toppings in the right box is between 3 and 7
         int selectedToppingsCount = selectedToppingsListView.getItems().size();
-        if (selectedToppingsCount == 7) {
+        if (selectedToppingsCount == MAX) {
             showErrorAlert("Error", "Select maximum of 7 toppings.");
             return;
         }
@@ -161,6 +187,10 @@ private void updateCost() {
         updateCost();
     }
 
+
+    /**
+     * Handles the "Remove Topping" button click event.
+     */
     @FXML
     private void onRemoveToppingClicked() {
         String selectedTopping = selectedToppingsListView.getSelectionModel().getSelectedItem();
@@ -171,6 +201,12 @@ private void updateCost() {
         updateCost();
     }
 
+
+    /**
+     * Calculates the total cost of the pizza.
+     *
+     * @return The total cost of the pizza.
+     */
     private double calculateCost() {
         Size selectedSize = sizeTypeComboBox.getValue();
         int selectedToppingsCount = selectedToppingsListView.getItems().size();
@@ -181,18 +217,31 @@ private void updateCost() {
         return basePrice + toppingsPrice;
     }
 
+    /**
+     * Gets the base price of the pizza based on its size.
+     *
+     * @param size The size of the pizza.
+     * @return The base price of the pizza.
+     */
+
     private double getBasePrice(Size size) {
         return switch (size) {
-            case SMALL -> 8.99;
-            case MEDIUM -> 8.99 + 2.0;
-            case LARGE -> 8.99 + 4.0;
-            default -> 0.0;
+            case SMALL -> SMALL;
+            case MEDIUM -> SMALL + TWO;
+            case LARGE -> SMALL+ FOUR;
+            default -> DEFAULT;
         };
     }
 
+    /**
+     * Gets the price of the toppings based on the number of selected toppings.
+     *
+     * @param toppingsCount The number of selected toppings.
+     * @return The price of the toppings.
+     */
     private double getToppingsPrice(int toppingsCount) {
         int additionalToppings = Math.max(0, toppingsCount - 3);
-        return additionalToppings * 1.49;
+        return additionalToppings * TOPPINGS_PRICE;
     }
 
     private void showSuccessAlert(String title, String contentText) {
