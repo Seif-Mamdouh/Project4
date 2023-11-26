@@ -4,22 +4,55 @@ import com.example.project4.RUpizza.Size;
 
 import java.util.List;
 
+/**
+ * Represents a customizable pizza where customers can build their own pizza by choosing size, toppings, and additional options.
+ * Extends the Pizza class.
+ * @author Satya Pandya
+ */
+
 public class BuildYourOwnPizza extends Pizza {
+    /**
+     * The base price for a small pizza.
+     */
     private static final double BASE_PRICE_SMALL = 8.99;
+    /**
+     * The price for each additional topping.
+     */
     private static final double TOPPING_PRICE = 1.49;
+    /**
+     * The number of toppings included in the base price.
+     */
     private static final int INCLUDED_TOPPINGS = 4;
+    /**
+     * The tax rate applied to the pizza price.
+     */
     public static final double TAX_RATE = 0.06625;
     private int orderID;
-
     private List<String> toppings;
 
+    private static final double DEFAULT_NUMBER = 0.0;
+    private static final double SIZE_PRICE_SMALL = 0.0;
+    private static final double SIZE_PRICE_MEDIUM = 2.0;
+    private static final double SIZE_PRICE_LARGE = 4.0;
+    private static final double EXTRACHEESE_PRICE = 1.0;
+    private static final double EXTRASUACE_PRICE = 1.0;
+
+
+
+    /**
+     * Constructs a new BuildYourOwnPizza object with the specified parameters.
+     *
+     * @param size        The size of the pizza (small, medium, large).
+     * @param extraSauce  Indicates whether extra sauce is added to the pizza.
+     * @param extraCheese Indicates whether extra cheese is added to the pizza.
+     * @param toppings    The list of toppings chosen for the pizza.
+     */
     public BuildYourOwnPizza(Size size, boolean extraSauce, boolean extraCheese, List<String> toppings) {
         this.size = size;
         this.extraSauce = extraSauce;
         this.extraCheese = extraCheese;
         this.toppings = toppings;
     }
-
 
     /**
      * Sets the order ID for the specialty pizza.
@@ -79,27 +112,27 @@ public class BuildYourOwnPizza extends Pizza {
                 return BASE_PRICE_SMALL;
             }
         }
-        return 0.0;
+        return DEFAULT_NUMBER;
     }
 
     private double calculateSizePrice() {
         switch (size) {
             case SMALL -> {
-                return 0.0;
+                return SIZE_PRICE_SMALL;
             }
             case MEDIUM -> {
-                return 2.0;
+                return SIZE_PRICE_MEDIUM;
             }
             case LARGE -> {
-                return 4.0;
+                return SIZE_PRICE_LARGE;
             }
         }
-        return 0.0;
+        return DEFAULT_NUMBER;
     }
 
     private double calculateExtraSauceAndCheesePrice() {
-        double extraSaucePrice = extraSauce ? 1.0 : 0.0;
-        double extraCheesePrice = extraCheese ? 1.0 : 0.0;
+        double extraSaucePrice = extraSauce ? EXTRASUACE_PRICE : DEFAULT_NUMBER;
+        double extraCheesePrice = extraCheese ? EXTRACHEESE_PRICE : DEFAULT_NUMBER;
 
         return extraSaucePrice + extraCheesePrice;
     }
@@ -109,11 +142,29 @@ public class BuildYourOwnPizza extends Pizza {
         return additionalToppings * TOPPING_PRICE;
     }
 
+
+    public List<String> getToppings() {
+        return toppings;
+    }
+
+
+    public void setToppings(List<String> toppings) {
+        this.toppings = toppings;
+    }
+
+
+    /**
+     * Returns a string representation of the BuildYourOwnPizza object, including details such as order ID, pizza size,
+     * extra cheese and sauce options, chosen toppings, total price, tax, and overall total.
+     *
+     * @return A string representation of the BuildYourOwnPizza object.
+     */
     @Override
     public String toString() {
         StringBuilder pizzaDetails = new StringBuilder();
         pizzaDetails.append("OrderID: ").append(orderID).append("\n");
         pizzaDetails.append("Build Your Own Pizza").append("\n");
+
         pizzaDetails.append("Size: ").append(size).append("\n");
         if (extraCheese) {
             pizzaDetails.append("Extra Cheese: yes\n");
@@ -126,7 +177,7 @@ public class BuildYourOwnPizza extends Pizza {
         } else {
             pizzaDetails.append("Extra Sauce: no\n");
         }
-        pizzaDetails.append("Toppings: ").append(String.join(", ", toppings)).append("\n");
+        pizzaDetails.append("Toppings: ").append(String.join(", ", toppings)).append("\n"); // Include toppings here
         pizzaDetails.append("Total Price: $").append(calculatePrice()).append("\n");
         pizzaDetails.append("Tax: $").append(calculateTax()).append("\n");
         pizzaDetails.append("Total: $").append(total()).append("\n");

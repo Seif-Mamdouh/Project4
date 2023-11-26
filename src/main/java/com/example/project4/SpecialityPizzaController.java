@@ -8,6 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 
 
@@ -42,6 +45,31 @@ public class SpecialityPizzaController {
     private CheckBox extraCheese;
 
 
+    private static final double BASE_PRICE_DELUXE_SMALL = 14.99;
+    private static final double BASE_PRICE_DELUXE_MEDIUM = 16.99;
+    private static final double BASE_PRICE_DELUXE_LARGE = 20.99;
+
+    private static final double BASE_PRICE_SUPREME_SMALL = 15.99;
+    private static final double BASE_PRICE_SUPREME_MEDIUM = 17.99;
+    private static final double BASE_PRICE_SUPREME_LARGE = 21.99;
+
+    private static final double BASE_PRICE_MEATZZA_SMALL = 16.99;
+    private static final double BASE_PRICE_MEATZZA_MEDIUM = 18.99;
+    private static final double BASE_PRICE_MEATZZA_LARGE = 22.99;
+
+    private static final double BASE_PRICE_SEAFOOD_SMALL = 17.99;
+    private static final double BASE_PRICE_SEAFOOD_MEDIUM = 19.99;
+    private static final double BASE_PRICE_SEAFOOD_LARGE = 23.99;
+
+    private static final double BASE_PRICE_PEPPERONI_SMALL = 10.99;
+    private static final double BASE_PRICE_PEPPERONI_MEDIUM = 12.99;
+    private static final double BASE_PRICE_PEPPERONI_LARGE = 16.99;
+
+    private static final double DEFAULT_BASE_PRICE = 0.0;
+
+    private static final double DEFAULT = 0.0;
+
+
     /**
      * Initializes the controller. Sets up event listeners, initializes UI components,
      * and populates the view with default pizza information.
@@ -72,31 +100,68 @@ public class SpecialityPizzaController {
         switch (newType) {
             case "Deluxe" -> {
                 changePicture("src/main/resources/com/example/project4/images/deluxe.jpeg");
-                ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
+                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Sausage", "pepperoni", "green pepper", "onion", "mushroom"));
                 updateCost();
             }
             case "Supreme" -> {
                 changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
-                ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper");
+                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper", "Ham", "Onion", "Black Olive", "Mushroom"));
                 updateCost();
             }
             case "Meatzza" -> {
                 changePicture("src/main/resources/com/example/project4/images/meattza.jpeg");
-                ingredients.setAll("Tomato Sauce", "Meats");
+                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Meats", "Sausage", "Pepperoni", "Beef", "Ham"));
                 updateCost();
             }
             case "Seafood" -> {
                 changePicture("src/main/resources/com/example/project4/images/seaFood.jpg");
-                ingredients.setAll("Alferado Sauce", "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
+                List<String> newIngredients = new ArrayList<>(List.of("Alferado Sauce", "Shrimp", "Squid", "Crab Meats"));
                 updateCost();
             }
             case "Pepperoni" -> {
                 changePicture("src/main/resources/com/example/project4/images/pepperoni-pizza.jpeg");
-                ingredients.setAll("Pepperoni", "Tomato Sauce");
+                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Pepperoni"));
                 updateCost();
             }
         }
     }
+
+    /**
+     * Handles the event when the "Add to Order" button is clicked.
+     * Parses user selections and creates a speciality pizza, adding it to the order.
+     * Displays success or error alerts based on the result.
+     */
+    @FXML
+    private void onAddOrderClicked() {
+        if (pizzaTypeComboBox.getSelectionModel().isEmpty()) {
+            showErrorAlert("Error", "Please select a pizza type before adding to the order.");
+            return;
+        }
+        // Parse the values
+        String selectedPizzaType = pizzaTypeComboBox.getValue().toUpperCase();
+        Size selectedSize = sizeTypeComboBox.getValue();
+        boolean isExtraSauce = extraSauce.isSelected();
+        boolean isExtraCheese = extraCheese.isSelected();
+
+        // Check if either extraSauce or extraCheese is selected without selecting a pizza type
+        if ((isExtraSauce || isExtraCheese) && pizzaTypeComboBox.getSelectionModel().isEmpty()) {
+            showErrorAlert("Error", "Please select a pizza type before adding extra sauce or extra cheese.");
+            return;
+        }
+
+        Pizza specialityPizza = PizzaMaker.createPizza(Pizza.PizzaType.valueOf(selectedPizzaType), selectedSize, isExtraSauce, isExtraCheese);
+        if (Order.getPizzaOrder().addPizza((SpecialityPizza) specialityPizza)) {
+            showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
+
+            System.out.println("Order Details:");
+            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
+                System.out.println(pizza.toString());
+            }
+        } else {
+            showErrorAlert("Error", "Failed to add the pizza to the order.");
+        }
+    }
+
 
     /**
      * Updates the image being displayed on the page
@@ -130,49 +195,6 @@ public class SpecialityPizzaController {
         }
 
         pizzaSubTotalLabel.setText(String.format("$%.2f", totalCost));
-    }
-
-    /**
-     * Handles the event when the "Add to Order" button is clicked.
-     * Parses user selections and creates a speciality pizza, adding it to the order.
-     * Displays success or error alerts based on the result.
-     */
-    @FXML
-    private void onAddOrderClicked() {
-
-        if (pizzaTypeComboBox.getSelectionModel().isEmpty()) {
-            showErrorAlert("Error", "Please select a pizza type before adding to the order.");
-            return;
-        }
-
-
-        // Parse the values
-        String selectedPizzaType = pizzaTypeComboBox.getValue().toUpperCase();
-        Size selectedSize = sizeTypeComboBox.getValue();
-        boolean isExtraSauce = extraSauce.isSelected();
-        boolean isExtraCheese = extraCheese.isSelected();
-
-        // Check if either extraSauce or extraCheese is selected without selecting a pizza type
-        if ((isExtraSauce || isExtraCheese) && pizzaTypeComboBox.getSelectionModel().isEmpty()) {
-            showErrorAlert("Error", "Please select a pizza type before adding extra sauce or extra cheese.");
-            return;
-        }
-
-        Pizza specialityPizza = PizzaMaker.createPizza(Pizza.PizzaType.valueOf(selectedPizzaType), selectedSize, isExtraSauce, isExtraCheese);
-
-        if (Order.getPizzaOrder().addPizza((SpecialityPizza) specialityPizza)) {
-            showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
-
-            System.out.println("Order Details:");
-            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
-                System.out.println(pizza.toString());
-            }
-
-        } else {
-            showErrorAlert("Error", "Failed to add the pizza to the order.");
-        }
-
-
     }
 
     /**
@@ -213,55 +235,50 @@ public class SpecialityPizzaController {
      */
     private double calculateCost(String pizzaType, Size size) {
         if (pizzaType == null || size == null) {
-            return 0.0;
+            return DEFAULT;
         }
         double basePrice = getBasePrice(pizzaType, size);
         return basePrice;
     }
 
 
-    /**
-     * Retrieves the base price of the pizza based on the selected pizza type and size.
-     *
-     * @param pizzaType The selected pizza type.
-     * @param size      The selected pizza size.
-     * @return The base price of the pizza.
-     */
+
     private double getBasePrice(String pizzaType, Size size) {
         switch (pizzaType) {
             case "Deluxe":
                 return switch (size) {
-                    case SMALL -> 14.99;
-                    case MEDIUM -> 16.99;
-                    case LARGE -> 20.99;
+                    case SMALL -> BASE_PRICE_DELUXE_SMALL;
+                    case MEDIUM -> BASE_PRICE_DELUXE_MEDIUM;
+                    case LARGE -> BASE_PRICE_DELUXE_LARGE;
                 };
             case "Supreme":
                 return switch (size) {
-                    case SMALL -> 15.99;
-                    case MEDIUM -> 17.99;
-                    case LARGE -> 21.99;
+                    case SMALL -> BASE_PRICE_SUPREME_SMALL;
+                    case MEDIUM -> BASE_PRICE_SUPREME_MEDIUM;
+                    case LARGE -> BASE_PRICE_SUPREME_LARGE;
                 };
             case "Meatzza":
                 return switch (size) {
-                    case SMALL -> 16.99;
-                    case MEDIUM -> 18.99;
-                    case LARGE -> 22.99;
+                    case SMALL -> BASE_PRICE_MEATZZA_SMALL;
+                    case MEDIUM -> BASE_PRICE_MEATZZA_MEDIUM;
+                    case LARGE -> BASE_PRICE_MEATZZA_LARGE;
                 };
             case "Seafood":
                 return switch (size) {
-                    case SMALL -> 17.99;
-                    case MEDIUM -> 19.99;
-                    case LARGE -> 23.99;
+                    case SMALL -> BASE_PRICE_SEAFOOD_SMALL;
+                    case MEDIUM -> BASE_PRICE_SEAFOOD_MEDIUM;
+                    case LARGE -> BASE_PRICE_SEAFOOD_LARGE;
                 };
             case "Pepperoni":
                 return switch (size) {
-                    case SMALL -> 10.99;
-                    case MEDIUM -> 12.99;
-                    case LARGE -> 16.99;
+                    case SMALL -> BASE_PRICE_PEPPERONI_SMALL;
+                    case MEDIUM -> BASE_PRICE_PEPPERONI_MEDIUM;
+                    case LARGE -> BASE_PRICE_PEPPERONI_LARGE;
                 };
             default:
-                return 0.0;
+                return DEFAULT_BASE_PRICE;
         }
     }
+
 
 }

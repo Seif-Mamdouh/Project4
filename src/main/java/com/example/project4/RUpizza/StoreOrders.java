@@ -28,11 +28,21 @@ public class StoreOrders {
     private ObservableList<Integer> displayOrderView = FXCollections.observableArrayList();
 
     private HashMap<Integer, Order> mapping = new HashMap<Integer, Order>();
-
+    /**
+     * Gets the mapping of order IDs to their respective orders.
+     *
+     * @return A HashMap containing order IDs as keys and their respective orders as values.
+     */
     public HashMap<Integer, Order> getMapping() {
         return mapping;
     }
 
+    /**
+     * Adds an order to the mapping.
+     *
+     * @param obj The object to be added as an order. Must be an instance of the Order class.
+     * @return {@code true} if the object was successfully added as an order, {@code false} otherwise.
+     */
     public boolean add(Object obj) {
         if (!(obj instanceof Order)) {
             return false;
@@ -44,6 +54,12 @@ public class StoreOrders {
         return true;
     }
 
+    /**
+     * Removes an order from the mapping based on its order ID.
+     *
+     * @param obj The order ID to be removed.
+     * @return {@code true} if the order was successfully removed, {@code false} otherwise.
+     */
     public boolean remove(Integer obj) {
         if(!mapping.containsKey(obj)) {
             return false;
@@ -109,6 +125,12 @@ public class StoreOrders {
 
     }
 
+    /**
+     * Calculates the total cost of pizzas in the given order.
+     *
+     * @param order The order for which to calculate the total cost.
+     * @return The total cost of all pizzas in the specified order.
+     */
     public double calculateTotal(Order order) {
         double tot = 0;
         for(Order x : mapping.values()) {

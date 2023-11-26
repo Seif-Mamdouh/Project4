@@ -33,9 +33,23 @@ public class BuildYourOwnPizzaController {
     @FXML
     private ImageView pizzaView;
 
+
+    private static final double EXTRA_TOPPING_COST = 1.0;
+    private static final int MAX = 7;
+    private static final int MIN = 3;
+
+    private static final double SMALL = 8.99;
+    private static final double TWO = 2.00;
+    private static final double FOUR = 4.00;
+    private static final double DEFAULT = 0.00;
+
+    private static final double TOPPINGS_PRICE = 1.49;
+
     private ObservableList<String> toppings;
     private ObservableList<String> selectedToppings;
-
+    /**
+     * Initializes the Build Your Own Pizza controller.
+     */
     public void initialize() {
         pizzaSubTotalLabel.setText("$0.00");
 
@@ -74,69 +88,95 @@ public class BuildYourOwnPizzaController {
         }
     }
 
+
+    /**
+     * Updates the total cost of the pizza.
+     */
     @FXML
-private void updateCost() {
-    double totalCost = calculateCost();
+    private void updateCost() {
+        double totalCost = calculateCost();
 
-    if (extraSauce.isSelected()) {
-        totalCost += 1.0;
-    }
-    if (extraCheese.isSelected()) {
-        totalCost += 1.0;
-    }
-
-    pizzaSubTotalLabel.setText(String.format("$%.2f", totalCost));
-}
-
-@FXML
-private void onAddOrderClicked() {
-    // Check if the number of toppings in the right box is between 3 and 7
-    int selectedToppingsCount = selectedToppingsListView.getItems().size();
-    if (selectedToppingsCount < 3) {
-        showErrorAlert("Error", "Select at least 3 toppings.");
-        return;
-    }
-
-    Size selectedSize = sizeTypeComboBox.getValue();
-    boolean isExtraSauce = extraSauce.isSelected(); // Update based on checkbox state
-    boolean isExtraCheese = extraCheese.isSelected();
-
-    List<String> selectedToppings = new ArrayList<>(selectedToppingsListView.getItems());
-    selectedToppings.add(sauceSelection.isSelected() ? "Alfredo sauce" : "Tomato sauce");
-    // Add the pizza to the order (you might need to modify this part based on your application structure)
-    Pizza buildYourOwnPizza = new BuildYourOwnPizza(selectedSize, isExtraSauce, isExtraCheese, selectedToppings);
-
-    if (Order.getPizzaOrder().addPizza(buildYourOwnPizza)) {
-        showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
-
-        System.out.println("Order Details:");
-        for (Object pizza : Order.getPizzaOrder().getPizzas()) {
-            System.out.println(pizza.toString());
+        if (extraSauce.isSelected()) {
+            totalCost += EXTRA_TOPPING_COST;
         }
-    } else {
-        showErrorAlert("Error", "Failed to add the pizza to the order.");
+        if (extraCheese.isSelected()) {
+            totalCost += EXTRA_TOPPING_COST;
+        }
+
+        pizzaSubTotalLabel.setText(String.format("$%.2f", totalCost));
     }
-    resetUI();
-}
 
-private void resetUI() {
-    extraSauce.setSelected(false);
-    extraCheese.setSelected(false);
-    sauceSelection.setSelected(false);
-    sizeTypeComboBox.getSelectionModel().selectFirst();
-    toppings.clear();
-    selectedToppings.clear();
-    List<String> availableToppings = Arrays.asList("Pepperoni", "Mushrooms", "Green peppers", "Onions", "Sausage", "Black olives", "Bacon", "Pineapple", "Fresh tomatoes", "Spinach", "Jalapenos", "Feta cheese", "Blue cheese");
-    toppings.addAll(availableToppings);
-    pizzaSubTotalLabel.setText("$0.00");
-}
+    /**
+     * Handles the "Add to Order" button click event.
+     */
+    @FXML
+    private void onAddOrderClicked() {
+        // Check if the number of toppings in the right box is between 3 and 7
+        int selectedToppingsCount = selectedToppingsListView.getItems().size();
+        if (selectedToppingsCount < MIN) {
+            showErrorAlert("Error", "Select at least 3 toppings.");
+            return;
+        }
 
+        Size selectedSize = sizeTypeComboBox.getValue();
+        boolean isExtraSauce = extraSauce.isSelected();
+        boolean isExtraCheese = extraCheese.isSelected();
+
+        List<String> selectedToppings = new ArrayList<>(selectedToppingsListView.getItems());
+        selectedToppings.add(sauceSelection.isSelected() ? "Alfredo sauce" : "Tomato sauce");
+
+        // Create a BuildYourOwnPizza instance with the selected toppings
+        Pizza buildYourOwnPizza = PizzaMaker.createPizza(
+                Pizza.PizzaType.BUILD_YOUR_OWN,
+                selectedSize,
+                isExtraSauce,
+                isExtraCheese
+        );
+
+        // Make sure the created pizza is of type BuildYourOwnPizza
+        if (buildYourOwnPizza instanceof BuildYourOwnPizza) {
+            // Set the selected toppings for the BuildYourOwnPizza instance
+            ((BuildYourOwnPizza) buildYourOwnPizza).setToppings(selectedToppings);
+        }
+
+        // Add the pizza to the order
+        if (Order.getPizzaOrder().addPizza(buildYourOwnPizza)) {
+            showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
+
+            System.out.println("Order Details:");
+            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
+                System.out.println(pizza.toString());
+            }
+        } else {
+            showErrorAlert("Error", "Failed to add the pizza to the order.");
+        }
+        resetUI();
+    }
+
+    /**
+     * Resets the user interface to its initial state.
+     */
+    private void resetUI() {
+        extraSauce.setSelected(false);
+        extraCheese.setSelected(false);
+        sauceSelection.setSelected(false);
+        sizeTypeComboBox.getSelectionModel().selectFirst();
+        toppings.clear();
+        selectedToppings.clear();
+        List<String> availableToppings = Arrays.asList("Pepperoni", "Mushrooms", "Green peppers", "Onions", "Sausage", "Black olives", "Bacon", "Pineapple", "Fresh tomatoes", "Spinach", "Jalapenos", "Feta cheese", "Blue cheese");
+        toppings.addAll(availableToppings);
+        pizzaSubTotalLabel.setText("$0.00");
+    }
+
+    /**
+     * Handles the "Add Topping" button click event.
+     */
     @FXML
     private void onAddToppingClicked() {
         String selectedTopping = toppingsListView.getSelectionModel().getSelectedItem();
         // Check if the number of toppings in the right box is between 3 and 7
         int selectedToppingsCount = selectedToppingsListView.getItems().size();
-        if (selectedToppingsCount == 7) {
+        if (selectedToppingsCount == MAX) {
             showErrorAlert("Error", "Select maximum of 7 toppings.");
             return;
         }
@@ -147,6 +187,10 @@ private void resetUI() {
         updateCost();
     }
 
+
+    /**
+     * Handles the "Remove Topping" button click event.
+     */
     @FXML
     private void onRemoveToppingClicked() {
         String selectedTopping = selectedToppingsListView.getSelectionModel().getSelectedItem();
@@ -157,6 +201,12 @@ private void resetUI() {
         updateCost();
     }
 
+
+    /**
+     * Calculates the total cost of the pizza.
+     *
+     * @return The total cost of the pizza.
+     */
     private double calculateCost() {
         Size selectedSize = sizeTypeComboBox.getValue();
         int selectedToppingsCount = selectedToppingsListView.getItems().size();
@@ -167,18 +217,31 @@ private void resetUI() {
         return basePrice + toppingsPrice;
     }
 
+    /**
+     * Gets the base price of the pizza based on its size.
+     *
+     * @param size The size of the pizza.
+     * @return The base price of the pizza.
+     */
+
     private double getBasePrice(Size size) {
         return switch (size) {
-            case SMALL -> 8.99;
-            case MEDIUM -> 8.99 + 2.0;
-            case LARGE -> 8.99 + 4.0;
-            default -> 0.0;
+            case SMALL -> SMALL;
+            case MEDIUM -> SMALL + TWO;
+            case LARGE -> SMALL+ FOUR;
+            default -> DEFAULT;
         };
     }
 
+    /**
+     * Gets the price of the toppings based on the number of selected toppings.
+     *
+     * @param toppingsCount The number of selected toppings.
+     * @return The price of the toppings.
+     */
     private double getToppingsPrice(int toppingsCount) {
         int additionalToppings = Math.max(0, toppingsCount - 3);
-        return additionalToppings * 1.49;
+        return additionalToppings * TOPPINGS_PRICE;
     }
 
     private void showSuccessAlert(String title, String contentText) {
