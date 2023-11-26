@@ -8,6 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.ObservableList;
 
 
@@ -97,31 +100,68 @@ public class SpecialityPizzaController {
         switch (newType) {
             case "Deluxe" -> {
                 changePicture("src/main/resources/com/example/project4/images/deluxe.jpeg");
-                ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
+                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Sausage", "pepperoni", "green pepper", "onion", "mushroom"));
                 updateCost();
             }
             case "Supreme" -> {
                 changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
-                ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper");
+                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper", "Ham", "Onion", "Black Olive", "Mushroom"));
                 updateCost();
             }
             case "Meatzza" -> {
                 changePicture("src/main/resources/com/example/project4/images/meattza.jpeg");
-                ingredients.setAll("Tomato Sauce", "Meats");
+                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Meats", "Sausage", "Pepperoni", "Beef", "Ham"));
                 updateCost();
             }
             case "Seafood" -> {
                 changePicture("src/main/resources/com/example/project4/images/seaFood.jpg");
-                ingredients.setAll("Alferado Sauce", "Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
+                List<String> newIngredients = new ArrayList<>(List.of("Alferado Sauce", "Shrimp", "Squid", "Crab Meats"));
                 updateCost();
             }
             case "Pepperoni" -> {
                 changePicture("src/main/resources/com/example/project4/images/pepperoni-pizza.jpeg");
-                ingredients.setAll("Pepperoni", "Tomato Sauce");
+                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Pepperoni"));
                 updateCost();
             }
         }
     }
+
+    /**
+     * Handles the event when the "Add to Order" button is clicked.
+     * Parses user selections and creates a speciality pizza, adding it to the order.
+     * Displays success or error alerts based on the result.
+     */
+    @FXML
+    private void onAddOrderClicked() {
+        if (pizzaTypeComboBox.getSelectionModel().isEmpty()) {
+            showErrorAlert("Error", "Please select a pizza type before adding to the order.");
+            return;
+        }
+        // Parse the values
+        String selectedPizzaType = pizzaTypeComboBox.getValue().toUpperCase();
+        Size selectedSize = sizeTypeComboBox.getValue();
+        boolean isExtraSauce = extraSauce.isSelected();
+        boolean isExtraCheese = extraCheese.isSelected();
+
+        // Check if either extraSauce or extraCheese is selected without selecting a pizza type
+        if ((isExtraSauce || isExtraCheese) && pizzaTypeComboBox.getSelectionModel().isEmpty()) {
+            showErrorAlert("Error", "Please select a pizza type before adding extra sauce or extra cheese.");
+            return;
+        }
+
+        Pizza specialityPizza = PizzaMaker.createPizza(Pizza.PizzaType.valueOf(selectedPizzaType), selectedSize, isExtraSauce, isExtraCheese);
+        if (Order.getPizzaOrder().addPizza((SpecialityPizza) specialityPizza)) {
+            showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
+
+            System.out.println("Order Details:");
+            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
+                System.out.println(pizza.toString());
+            }
+        } else {
+            showErrorAlert("Error", "Failed to add the pizza to the order.");
+        }
+    }
+
 
     /**
      * Updates the image being displayed on the page
@@ -155,41 +195,6 @@ public class SpecialityPizzaController {
         }
 
         pizzaSubTotalLabel.setText(String.format("$%.2f", totalCost));
-    }
-
-    /**
-     * Handles the event when the "Add to Order" button is clicked.
-     * Parses user selections and creates a speciality pizza, adding it to the order.
-     * Displays success or error alerts based on the result.
-     */
-    @FXML
-    private void onAddOrderClicked() {
-        if (pizzaTypeComboBox.getSelectionModel().isEmpty()) {
-            showErrorAlert("Error", "Please select a pizza type before adding to the order.");
-            return;
-        }
-        // Parse the values
-        String selectedPizzaType = pizzaTypeComboBox.getValue().toUpperCase();
-        Size selectedSize = sizeTypeComboBox.getValue();
-        boolean isExtraSauce = extraSauce.isSelected();
-        boolean isExtraCheese = extraCheese.isSelected();
-
-        // Check if either extraSauce or extraCheese is selected without selecting a pizza type
-        if ((isExtraSauce || isExtraCheese) && pizzaTypeComboBox.getSelectionModel().isEmpty()) {
-            showErrorAlert("Error", "Please select a pizza type before adding extra sauce or extra cheese.");
-            return;
-        }
-        Pizza specialityPizza = PizzaMaker.createPizza(Pizza.PizzaType.valueOf(selectedPizzaType), selectedSize, isExtraSauce, isExtraCheese);
-        if (Order.getPizzaOrder().addPizza((SpecialityPizza) specialityPizza)) {
-            showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
-
-            System.out.println("Order Details:");
-            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
-                System.out.println(pizza.toString());
-            }
-        } else {
-            showErrorAlert("Error", "Failed to add the pizza to the order.");
-        }
     }
 
     /**
@@ -232,7 +237,8 @@ public class SpecialityPizzaController {
         if (pizzaType == null || size == null) {
             return DEFAULT;
         }
-        return getBasePrice(pizzaType, size);
+        double basePrice = getBasePrice(pizzaType, size);
+        return basePrice;
     }
 
 

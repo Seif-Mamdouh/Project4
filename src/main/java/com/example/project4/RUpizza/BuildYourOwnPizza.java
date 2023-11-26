@@ -54,7 +54,6 @@ public class BuildYourOwnPizza extends Pizza {
         this.toppings = toppings;
     }
 
-
     /**
      * Sets the order ID for the specialty pizza.
      *
@@ -148,6 +147,12 @@ public class BuildYourOwnPizza extends Pizza {
         return toppings;
     }
 
+
+    public void setToppings(List<String> toppings) {
+        this.toppings = toppings;
+    }
+
+
     /**
      * Returns a string representation of the BuildYourOwnPizza object, including details such as order ID, pizza size,
      * extra cheese and sauce options, chosen toppings, total price, tax, and overall total.
@@ -172,7 +177,7 @@ public class BuildYourOwnPizza extends Pizza {
         } else {
             pizzaDetails.append("Extra Sauce: no\n");
         }
-        pizzaDetails.append("Toppings: ").append(String.join(", ", getToppings())).append("\n");
+        pizzaDetails.append("Toppings: ").append(String.join(", ", toppings)).append("\n"); // Include toppings here
         pizzaDetails.append("Total Price: $").append(calculatePrice()).append("\n");
         pizzaDetails.append("Tax: $").append(calculateTax()).append("\n");
         pizzaDetails.append("Total: $").append(total()).append("\n");

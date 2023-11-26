@@ -88,49 +88,62 @@ private void updateCost() {
     pizzaSubTotalLabel.setText(String.format("$%.2f", totalCost));
 }
 
-@FXML
-private void onAddOrderClicked() {
-    // Check if the number of toppings in the right box is between 3 and 7
-    int selectedToppingsCount = selectedToppingsListView.getItems().size();
-    if (selectedToppingsCount < 3) {
-        showErrorAlert("Error", "Select at least 3 toppings.");
-        return;
-    }
-
-    Size selectedSize = sizeTypeComboBox.getValue();
-    boolean isExtraSauce = extraSauce.isSelected(); // Update based on checkbox state
-    boolean isExtraCheese = extraCheese.isSelected();
-
-    List<String> selectedToppings = new ArrayList<>(selectedToppingsListView.getItems());
-    selectedToppings.add(sauceSelection.isSelected() ? "Alfredo sauce" : "Tomato sauce");
-    // Add the pizza to the order (you might need to modify this part based on your application structure)
-
-    Pizza buildYourOwnPizza = PizzaMaker.createPizza(Pizza.PizzaType.BUILD_YOUR_OWN, selectedSize, isExtraSauce, isExtraCheese);
-
-    if (Order.getPizzaOrder().addPizza(buildYourOwnPizza)) {
-        showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
-
-        System.out.println("Order Details:");
-        for (Object pizza : Order.getPizzaOrder().getPizzas()) {
-            System.out.println(pizza.toString());
+    @FXML
+    private void onAddOrderClicked() {
+        // Check if the number of toppings in the right box is between 3 and 7
+        int selectedToppingsCount = selectedToppingsListView.getItems().size();
+        if (selectedToppingsCount < 3) {
+            showErrorAlert("Error", "Select at least 3 toppings.");
+            return;
         }
-    } else {
-        showErrorAlert("Error", "Failed to add the pizza to the order.");
-    }
-    resetUI();
-}
 
-private void resetUI() {
-    extraSauce.setSelected(false);
-    extraCheese.setSelected(false);
-    sauceSelection.setSelected(false);
-    sizeTypeComboBox.getSelectionModel().selectFirst();
-    toppings.clear();
-    selectedToppings.clear();
-    List<String> availableToppings = Arrays.asList("Pepperoni", "Mushrooms", "Green peppers", "Onions", "Sausage", "Black olives", "Bacon", "Pineapple", "Fresh tomatoes", "Spinach", "Jalapenos", "Feta cheese", "Blue cheese");
-    toppings.addAll(availableToppings);
-    pizzaSubTotalLabel.setText("$0.00");
-}
+        Size selectedSize = sizeTypeComboBox.getValue();
+        boolean isExtraSauce = extraSauce.isSelected();
+        boolean isExtraCheese = extraCheese.isSelected();
+
+        List<String> selectedToppings = new ArrayList<>(selectedToppingsListView.getItems());
+        selectedToppings.add(sauceSelection.isSelected() ? "Alfredo sauce" : "Tomato sauce");
+
+        // Create a BuildYourOwnPizza instance with the selected toppings
+        Pizza buildYourOwnPizza = PizzaMaker.createPizza(
+                Pizza.PizzaType.BUILD_YOUR_OWN,
+                selectedSize,
+                isExtraSauce,
+                isExtraCheese
+        );
+
+        // Make sure the created pizza is of type BuildYourOwnPizza
+        if (buildYourOwnPizza instanceof BuildYourOwnPizza) {
+            // Set the selected toppings for the BuildYourOwnPizza instance
+            ((BuildYourOwnPizza) buildYourOwnPizza).setToppings(selectedToppings);
+        }
+
+        // Add the pizza to the order
+        if (Order.getPizzaOrder().addPizza(buildYourOwnPizza)) {
+            showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
+
+            System.out.println("Order Details:");
+            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
+                System.out.println(pizza.toString());
+            }
+        } else {
+            showErrorAlert("Error", "Failed to add the pizza to the order.");
+        }
+        resetUI();
+    }
+
+
+    private void resetUI() {
+        extraSauce.setSelected(false);
+        extraCheese.setSelected(false);
+        sauceSelection.setSelected(false);
+        sizeTypeComboBox.getSelectionModel().selectFirst();
+        toppings.clear();
+        selectedToppings.clear();
+        List<String> availableToppings = Arrays.asList("Pepperoni", "Mushrooms", "Green peppers", "Onions", "Sausage", "Black olives", "Bacon", "Pineapple", "Fresh tomatoes", "Spinach", "Jalapenos", "Feta cheese", "Blue cheese");
+        toppings.addAll(availableToppings);
+        pizzaSubTotalLabel.setText("$0.00");
+    }
 
     @FXML
     private void onAddToppingClicked() {
