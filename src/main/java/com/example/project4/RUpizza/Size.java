@@ -8,7 +8,6 @@ package com.example.project4.RUpizza;
  * @author Seifeldeen Mohamed
  */
 public enum Size {
-
     SMALL("Small"),
     MEDIUM("Medium"),
     LARGE("Large");
@@ -22,8 +21,6 @@ public enum Size {
     Size(String displayName) {
         this.displayName = displayName;
     }
-
-
 
     /**
      * Returns the display name of the size.

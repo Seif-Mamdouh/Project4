@@ -104,7 +104,8 @@ private void onAddOrderClicked() {
     List<String> selectedToppings = new ArrayList<>(selectedToppingsListView.getItems());
     selectedToppings.add(sauceSelection.isSelected() ? "Alfredo sauce" : "Tomato sauce");
     // Add the pizza to the order (you might need to modify this part based on your application structure)
-    Pizza buildYourOwnPizza = new BuildYourOwnPizza(selectedSize, isExtraSauce, isExtraCheese, selectedToppings);
+
+    Pizza buildYourOwnPizza = PizzaMaker.createPizza(Pizza.PizzaType.BUILD_YOUR_OWN, selectedSize, isExtraSauce, isExtraCheese);
 
     if (Order.getPizzaOrder().addPizza(buildYourOwnPizza)) {
         showSuccessAlert("Pizza Added", "The pizza has been added to the order.");

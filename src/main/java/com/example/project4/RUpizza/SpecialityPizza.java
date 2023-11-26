@@ -9,10 +9,68 @@ package com.example.project4.RUpizza;
  * @author Seifeldeen Mohamed
  */
 public class SpecialityPizza extends Pizza {
-
+    /**
+     * The type of pizza chosen for the order.
+     */
     private PizzaType pizzaType;
+    /**
+     * The tax rate applied to the pizza order total.
+     */
     public static final double TAX_RATE = 0.06625;
+    /**
+     * The unique identifier for the pizza order.
+     */
     private int orderID;
+
+    /**
+     * The base price for a deluxe pizza.
+     */
+    private static final double BASE_PRICE_DELUXE = 14.99;
+
+    /**
+     * The base price for a supreme pizza.
+     */
+    private static final double BASE_PRICE_SUPREME = 15.99;
+
+    /**
+     * The base price for a meatzza pizza.
+     */
+    private static final double BASE_PRICE_MEATZZA = 16.99;
+
+    /**
+     * The base price for a seafood pizza.
+     */
+    private static final double BASE_PRICE_SEAFOOD = 17.99;
+
+    /**
+     * The base price for a pepperoni pizza.
+     */
+    private static final double BASE_PRICE_PEPPERONI = 10.99;
+
+    /**
+     * The default base price.
+     */
+    private static final double DEFAULT = 0.0;
+
+    /**
+     * The additional price for a small-sized pizza.
+     */
+    private static final double SIZE_PRICE_SMALL = 0.0;
+
+    /**
+     * The additional price for a medium-sized pizza.
+     */
+    private static final double SIZE_PRICE_MEDIUM = 2.0;
+
+    /**
+     * The additional price for a large-sized pizza.
+     */
+    private static final double SIZE_PRICE_LARGE = 4.0;
+
+    /**
+     * The additional price for extra sauce and cheese on the pizza.
+     */
+    private static final double EXTRA_SAUCE_AND_CHEESE_PRICE = 1.0;
 
     /**
      * Constructs a SpecialityPizza with the specified parameters.
@@ -65,7 +123,6 @@ public class SpecialityPizza extends Pizza {
         return calculatePrice() * TAX_RATE;
     }
 
-
     /**
      * Calculates the total price of the specialty pizza.
      *
@@ -87,35 +144,34 @@ public class SpecialityPizza extends Pizza {
     private double calculateBasePrice() {
         return switch (pizzaType) {
             case DELUXE -> switch (size) {
-                case SMALL, MEDIUM, LARGE -> 14.99;
+                case SMALL, MEDIUM, LARGE -> BASE_PRICE_DELUXE;
             };
             case SUPREME -> switch (size) {
-                case SMALL, MEDIUM, LARGE -> 15.99;
+                case SMALL, MEDIUM, LARGE -> BASE_PRICE_SUPREME;
             };
             case MEATZZA-> switch (size) {
-                case SMALL, MEDIUM, LARGE -> 16.99;
+                case SMALL, MEDIUM, LARGE -> BASE_PRICE_MEATZZA;
             };
             case SEAFOOD -> switch (size) {
-                case SMALL, MEDIUM, LARGE -> 17.99;
+                case SMALL, MEDIUM, LARGE -> BASE_PRICE_SEAFOOD;
             };
             case PEPPERONI -> switch (size) {
-                case SMALL, MEDIUM, LARGE -> 10.99;
+                case SMALL, MEDIUM, LARGE -> BASE_PRICE_PEPPERONI;
             };
-            default -> 0.0;
+            default -> DEFAULT;
         };
     }
-
 
     private double calculateSizePrice() {
         return switch (size) {
-            case SMALL -> 0.0;  // No additional cost for small size
-            case MEDIUM -> 2.0; // Additional $2 for medium size
-            case LARGE -> 4.0;  // Additional $4 for large size
+            case SMALL -> SIZE_PRICE_SMALL;  // No additional cost for small size
+            case MEDIUM -> SIZE_PRICE_MEDIUM; // Additional $2 for medium size
+            case LARGE -> SIZE_PRICE_LARGE;  // Additional $4 for large size
         };
     }
     private double calculateExtraSauceAndCheesePrice() {
-        double extraSaucePrice = extraSauce ? 1.0 : 0.0;
-        double extraCheesePrice = extraCheese ? 1.0 : 0.0;
+        double extraSaucePrice = extraSauce ? EXTRA_SAUCE_AND_CHEESE_PRICE : DEFAULT;
+        double extraCheesePrice = extraCheese ? EXTRA_SAUCE_AND_CHEESE_PRICE : DEFAULT;
 
         return extraSaucePrice + extraCheesePrice;
     }
@@ -132,27 +188,21 @@ public class SpecialityPizza extends Pizza {
         pizzaDetails.append("Order ID: ").append(orderID).append("\n");
         pizzaDetails.append("Pizza Type: ").append(pizzaType).append("\n");
         pizzaDetails.append("Size: ").append(size).append("\n");
-
         if (extraCheese) {
             pizzaDetails.append("Extra Cheese: yes\n");
         } else {
             pizzaDetails.append("Extra Cheese: no\n");
         }
-
         if (extraSauce) {
             pizzaDetails.append("Extra Sauce: yes\n");
         } else {
             pizzaDetails.append("Extra Sauce: no\n");
         }
-
         pizzaDetails.append("Total Price: $").append(calculatePrice()).append("\n");
         pizzaDetails.append("Tax: $").append(calculateTax()).append("\n");
         pizzaDetails.append("Total: $").append(total()).append("\n");
-
         return pizzaDetails.toString();
     }
-
-
 
 }
 
