@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="ANALYZE_TEST_SOURCES" value="false" />
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1146ccde-975e-4ce2-adef-d7c48aaafcb0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/project4/RUpizza/BuildYourOwnPizzaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/project4/RUpizza/BuildYourOwnPizzaTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,14 +24,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
-}</component>
+    &quot;associatedIndex&quot;: 5
+    }</component>
   <component name="ProjectId" id="2XcnDZcAzyBNyJE3h78nN9l9n6R" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -49,10 +44,9 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/seifmamdouh/Dropbox/My Mac (seifs-air.lan)/Desktop/project4/src/main/resources/com/example/project4",
-    "node.js.selected.package.tslint": "(autodetect)",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/project4" />
@@ -66,7 +60,7 @@
       <recent name="com.example.project4" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BuildYourOwnPizzaTest">
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.project4.RUpizza.Main" />
       <module name="project4" />
@@ -121,12 +115,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.PizzaMaker" />
-      <item itemvalue="Application.SpecialityPizza" />
-      <item itemvalue="JUnit.BuildYourOwnPizzaTest" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.BuildYourOwnPizzaTest" />
@@ -146,21 +134,6 @@
       <updated>1698937119040</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
