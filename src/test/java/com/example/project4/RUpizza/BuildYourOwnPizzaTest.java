@@ -16,8 +16,14 @@ class BuildYourOwnPizzaTest {
         selectedToppings.add("Random2");
         selectedToppings.add("Random3");
         selectedToppings.add("SAUCE");
-        Pizza buildYourOwnPizza = new BuildYourOwnPizza(Size.SMALL, false, false, selectedToppings);
-        assertEquals(8.99, buildYourOwnPizza.calculatePrice());
+        Pizza buildYourOwnPizza = PizzaMaker.createPizza(
+                Pizza.PizzaType.BUILD_YOUR_OWN,
+                Size.SMALL,
+                false,
+                false
+        );
+        ((BuildYourOwnPizza) buildYourOwnPizza).setToppings(selectedToppings);
+        assertEquals(8.99, ((BuildYourOwnPizza) buildYourOwnPizza).calculatePrice());
     }
 
     @Test
@@ -30,15 +36,27 @@ class BuildYourOwnPizzaTest {
         selectedToppings.add("Random5");
         selectedToppings.add("Random6");
         selectedToppings.add("SAUCE");
-        Pizza buildYourOwnPizza = new BuildYourOwnPizza(Size.MEDIUM, true, true, selectedToppings);
-        assertEquals(17.46, buildYourOwnPizza.calculatePrice());
+        Pizza buildYourOwnPizza = PizzaMaker.createPizza(
+                Pizza.PizzaType.BUILD_YOUR_OWN,
+                Size.MEDIUM,
+                true,
+                true
+        );
+        ((BuildYourOwnPizza) buildYourOwnPizza).setToppings(selectedToppings);
+        assertEquals(17.46, ((BuildYourOwnPizza) buildYourOwnPizza).calculatePrice());
     }
 
     @Test
     void testCase3() {
         List<String> selectedToppings = new ArrayList<String>();
-        Pizza buildYourOwnPizza = new BuildYourOwnPizza(Size.LARGE, false, true, selectedToppings);
-        assertEquals(13.99, buildYourOwnPizza.calculatePrice());
+        Pizza buildYourOwnPizza = PizzaMaker.createPizza(
+                Pizza.PizzaType.BUILD_YOUR_OWN,
+                Size.LARGE,
+                false,
+                true
+        );
+        ((BuildYourOwnPizza) buildYourOwnPizza).setToppings(selectedToppings);
+        assertEquals(13.99, ((BuildYourOwnPizza) buildYourOwnPizza).calculatePrice());
     }
 
     @Test
@@ -50,8 +68,14 @@ class BuildYourOwnPizzaTest {
         selectedToppings.add("Random4");
         selectedToppings.add("Random5");
         selectedToppings.add("SAUCE");
-        Pizza buildYourOwnPizza = new BuildYourOwnPizza(Size.SMALL, true, false, selectedToppings);
-        assertEquals(12.97, buildYourOwnPizza.calculatePrice());
+        Pizza buildYourOwnPizza = PizzaMaker.createPizza(
+                Pizza.PizzaType.BUILD_YOUR_OWN,
+                Size.SMALL,
+                true,
+                false
+        );
+        ((BuildYourOwnPizza) buildYourOwnPizza).setToppings(selectedToppings);
+        assertEquals(12.97, ((BuildYourOwnPizza) buildYourOwnPizza).calculatePrice());
     }
 
     @Test
@@ -65,8 +89,14 @@ class BuildYourOwnPizzaTest {
         selectedToppings.add("Random6");
         selectedToppings.add("Random7");
         selectedToppings.add("SAUCE");
-        Pizza buildYourOwnPizza = new BuildYourOwnPizza(Size.MEDIUM, false, false, selectedToppings);
-        assertEquals(16.95, buildYourOwnPizza.calculatePrice());
+        Pizza buildYourOwnPizza = PizzaMaker.createPizza(
+                Pizza.PizzaType.BUILD_YOUR_OWN,
+                Size.MEDIUM,
+                false,
+                false
+        );
+        ((BuildYourOwnPizza) buildYourOwnPizza).setToppings(selectedToppings);
+        assertEquals(16.95, ((BuildYourOwnPizza) buildYourOwnPizza).calculatePrice());
     }
 
 }
