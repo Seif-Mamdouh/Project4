@@ -95,32 +95,31 @@ public class SpecialityPizzaController {
         });
     }
 
-
     private void updatePizzaType(String newType) {
         switch (newType) {
             case "Deluxe" -> {
                 changePicture("src/main/resources/com/example/project4/images/deluxe.jpeg");
-                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Sausage", "pepperoni", "green pepper", "onion", "mushroom"));
+                ingredients.setAll("Tomato Sauce", "Sausage", "pepperoni", "green pepper", "onion", "mushroom");
                 updateCost();
             }
             case "Supreme" -> {
                 changePicture("src/main/resources/com/example/project4/images/supreme.jpg");
-                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper", "Ham", "Onion", "Black Olive", "Mushroom"));
+                ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Green Pepper", "Ham", "Onion", "Black Olive", "Mushroom");
                 updateCost();
             }
             case "Meatzza" -> {
                 changePicture("src/main/resources/com/example/project4/images/meattza.jpeg");
-                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Meats", "Sausage", "Pepperoni", "Beef", "Ham"));
+                ingredients.setAll("Tomato Sauce", "Sausage", "Pepperoni", "Beef", "Ham");
                 updateCost();
             }
             case "Seafood" -> {
                 changePicture("src/main/resources/com/example/project4/images/seaFood.jpg");
-                List<String> newIngredients = new ArrayList<>(List.of("Alferado Sauce", "Shrimp", "Squid", "Crab Meats"));
+                ingredients.setAll("Alferado Sauce", "Shrimp", "Squid", "Crab Meats");
                 updateCost();
             }
             case "Pepperoni" -> {
                 changePicture("src/main/resources/com/example/project4/images/pepperoni-pizza.jpeg");
-                List<String> newIngredients = new ArrayList<>(List.of("Tomato Sauce", "Pepperoni"));
+                ingredients.setAll("Pepperoni", "Tomato Sauce");
                 updateCost();
             }
         }
@@ -152,11 +151,6 @@ public class SpecialityPizzaController {
         Pizza specialityPizza = PizzaMaker.createPizza(Pizza.PizzaType.valueOf(selectedPizzaType), selectedSize, isExtraSauce, isExtraCheese);
         if (Order.getPizzaOrder().addPizza((SpecialityPizza) specialityPizza)) {
             showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
-
-            System.out.println("Order Details:");
-            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
-                System.out.println(pizza.toString());
-            }
         } else {
             showErrorAlert("Error", "Failed to add the pizza to the order.");
         }

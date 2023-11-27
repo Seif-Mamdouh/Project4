@@ -142,11 +142,6 @@ public class BuildYourOwnPizzaController {
         // Add the pizza to the order
         if (Order.getPizzaOrder().addPizza(buildYourOwnPizza)) {
             showSuccessAlert("Pizza Added", "The pizza has been added to the order.");
-
-            System.out.println("Order Details:");
-            for (Object pizza : Order.getPizzaOrder().getPizzas()) {
-                System.out.println(pizza.toString());
-            }
         } else {
             showErrorAlert("Error", "Failed to add the pizza to the order.");
         }
